@@ -4,6 +4,8 @@
  */
 package Elements;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author girveos
@@ -11,14 +13,14 @@ package Elements;
 public class no_fatal extends Image{
     private int cantidad_daño;
 
-    public no_fatal(int cantidad_daño, String ruta, double x, double y, int ancho, int alto, double area, String id) {
-        super(ruta, x, y, ancho, alto, area, id);
+    public no_fatal(int cantidad_daño, String ruta, int x, int y, int ancho, int alto, String id) {
+        super(ruta, x, y, ancho, alto, id);
         this.cantidad_daño = cantidad_daño;
+        Rectangle area = new Rectangle(x, y, ancho,alto);
+        this.setArea(area);
     }
 
-    public no_fatal() {
-        super(null, 0, 0, 0, 0, 0, null);
-    }
+    
 
    
      

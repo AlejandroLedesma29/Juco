@@ -4,14 +4,36 @@
  */
 package Elements;
 
+import java.awt.Color;
+import java.awt.Rectangle;
+
 /**
  *
  * @author girveos
  */
 public class fatal extends Image{
+    private Color color;
 
-    public fatal() {
-        super(null, 0, 0, 0, 0, 0, null);
+    public fatal(Color color, String ruta, int x, int y, int ancho, int alto, String id) {
+        super(ruta, x, y, ancho, alto, id);
+        this.color = color;
+        Rectangle area = new Rectangle(x, y, ancho,alto);
+        this.setArea(area);
     }
+
+    /**
+     * @return the color
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
 
 }

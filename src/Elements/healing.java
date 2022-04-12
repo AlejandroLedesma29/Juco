@@ -4,6 +4,8 @@
  */
 package Elements;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author girveos
@@ -11,15 +13,14 @@ package Elements;
 public class healing extends Image{
     private int cantidad_aumento;
 
-    public healing(int cantidad_aumento, String ruta, double x, double y, int ancho, int alto, double area, String id) {
-        super(ruta, x, y, ancho, alto, area, id);
+    public healing(int cantidad_aumento, String ruta, int x, int y, int ancho, int alto, String id) {
+        super(ruta, x, y, ancho, alto, id);
         this.cantidad_aumento = cantidad_aumento;
+        Rectangle area = new Rectangle(x, y, ancho,alto);
+        this.setArea(area);
     }
 
-    public healing() {
-        super(null, 0, 0, 0, 0, 0, null);
-    }
-
+    
     
 
     

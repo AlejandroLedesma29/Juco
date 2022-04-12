@@ -5,6 +5,11 @@
  */
 package juco_game;
 
+import Elements.barrier;
+import Elements.mapa;
+import Elements.player;
+import java.awt.Color;
+
 /**
  *
  * @author L E D E S M A
@@ -16,6 +21,45 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        
+        mapa Mapa1 = new mapa("001");
+        
+        //Creacion de muros
+        
+        barrier top = new barrier(Color.BLACK,0,0,800,15,"top");
+        barrier right = new barrier(Color.BLACK,785,0,15,500,"rigth");
+        barrier left = new barrier(Color.BLACK,0,0,15,500,"left");
+        barrier down = new barrier(Color.BLACK,0,485,800,15,"down");
+        barrier middle = new barrier(Color.BLACK,0,245,800,15,"middle");
+        
+        barrier uno = new barrier(Color.BLACK,0,0,50,100,"left");
+        barrier dos  = new barrier(Color.BLACK,0,150,50,100,"left");
+        
+        barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
+        barrier penultimo  = new barrier(Color.BLACK,750,150,50,100,"rigth");
+        
+        
+        //barrier tres = new barrier(Color.BLACK,0,0,,15,"top");
+
+        Mapa1.getMisElementos().add(top);
+        Mapa1.getMisElementos().add(right);
+        Mapa1.getMisElementos().add(left);
+        Mapa1.getMisElementos().add(down);
+        Mapa1.getMisElementos().add(middle);
+        Mapa1.getMisElementos().add(uno);
+        Mapa1.getMisElementos().add(dos);
+        Mapa1.getMisElementos().add(ultimo);
+        Mapa1.getMisElementos().add(penultimo); 
+        
+        //Creacion de jugadores
+        player Jugador1 = new player(200,"src/pictures/globoRed",20,125,20,20,"globo_rojo");
+        Mapa1.getMisElementos().add(Jugador1);
+        
+        lienzo1.setMiMapa(Mapa1);
+        Thread proceso = new Thread(lienzo1);
+        this.lienzo1.setActivo(true);
+        proceso.start();
+        
     }
 
     /**
@@ -25,17 +69,39 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lienzo1 = new juco_game.Lienzo();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lienzo1.setBackground(new java.awt.Color(255, 255, 255));
+        lienzo1.setPreferredSize(new java.awt.Dimension(700, 400));
+
+        javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
+        lienzo1.setLayout(lienzo1Layout);
+        lienzo1Layout.setHorizontalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        lienzo1Layout.setVerticalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 489, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -77,5 +143,6 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private juco_game.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 }

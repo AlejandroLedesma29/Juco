@@ -5,6 +5,8 @@
  */
 package Elements;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author L E D E S M A
@@ -12,12 +14,13 @@ package Elements;
 public abstract class Image extends element{
     private String ruta;
 
-    public Image(String ruta, double x, double y, int ancho, int alto, double area, String id) {
-        super(x, y, ancho, alto, area, id);
+    public Image(String ruta, int x, int y, int ancho, int alto, String id) {
+        super(x, y, ancho, alto, id);
         this.ruta = ruta;
+        Rectangle area = new Rectangle(x, y, ancho,alto);
+        this.setArea(area);
     }
 
-    
     
     /**
      * @return the ruta
@@ -33,4 +36,11 @@ public abstract class Image extends element{
         this.ruta = ruta;
     }
     
-}
+    
+    
+
+    }
+
+    
+
+
