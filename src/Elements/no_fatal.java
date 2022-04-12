@@ -8,13 +8,20 @@ package Elements;
  *
  * @author girveos
  */
-public class no_fatal extends element{
+public class no_fatal extends Image{
     private int cantidad_daño;
 
-    public no_fatal(int cantidad_daño, double x, double y, int lado, double area, String id) {
-        super(x, y, lado, area, id);
+    public no_fatal(int cantidad_daño, String ruta, double x, double y, int ancho, int alto, double area, String id) {
+        super(ruta, x, y, ancho, alto, area, id);
         this.cantidad_daño = cantidad_daño;
     }
+
+    public no_fatal() {
+        super(null, 0, 0, 0, 0, 0, null);
+    }
+
+   
+     
 
     /**
      * @return the cantidad_daño

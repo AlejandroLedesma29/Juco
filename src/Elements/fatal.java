@@ -8,10 +8,10 @@ package Elements;
  *
  * @author girveos
  */
-public class fatal extends element{
+public class fatal extends Image{
 
     public fatal() {
-        super(0, 0, 0, 0, null);
+        super(null, 0, 0, 0, 0, 0, null);
     }
-    
+
 }

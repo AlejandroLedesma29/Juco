@@ -8,12 +8,16 @@ package Elements;
  *
  * @author girveos
  */
-public class player extends element {
+public class player extends Image {
     private int nivel_aire;
 
-    public player(int nivel_aire, double x, double y, int lado, double area, String id) {
-        super(x, y, lado, area, id);
+    public player(int nivel_aire, String ruta, double x, double y, int ancho, int alto, double area, String id) {
+        super(ruta, x, y, ancho, alto, area, id);
         this.nivel_aire = nivel_aire;
+    }
+
+    public player() {
+        super(null, 0, 0, 0, 0, 0, null);
     }
 
     /**

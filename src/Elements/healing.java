@@ -8,13 +8,21 @@ package Elements;
  *
  * @author girveos
  */
-public class healing extends element{
+public class healing extends Image{
     private int cantidad_aumento;
 
-    public healing(int cantidad_aumento, double x, double y, int lado, double area, String id) {
-        super(x, y, lado, area, id);
+    public healing(int cantidad_aumento, String ruta, double x, double y, int ancho, int alto, double area, String id) {
+        super(ruta, x, y, ancho, alto, area, id);
         this.cantidad_aumento = cantidad_aumento;
     }
+
+    public healing() {
+        super(null, 0, 0, 0, 0, 0, null);
+    }
+
+    
+
+    
 
     /**
      * @return the cantidad_aumento

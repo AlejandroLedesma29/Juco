@@ -11,17 +11,21 @@ package Elements;
 public abstract class element {
     private double x;
     private double y;
-    private int lado;
+    private int ancho;
+    private int alto;
     private double area;
     private String id;
 
-    public element(double x, double y, int lado, double area, String id) {
+    public element(double x, double y, int ancho, int alto, double area, String id) {
         this.x = x;
         this.y = y;
-        this.lado = lado;
+        this.ancho = ancho;
+        this.alto = alto;
         this.area = area;
         this.id = id;
     }
+
+    
 
     
 
@@ -53,19 +57,6 @@ public abstract class element {
         this.y = y;
     }
 
-    /**
-     * @return the lado
-     */
-    public int getLado() {
-        return lado;
-    }
-
-    /**
-     * @param lado the lado to set
-     */
-    public void setLado(int lado) {
-        this.lado = lado;
-    }
 
     /**
      * @return the area
@@ -93,6 +84,34 @@ public abstract class element {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * @return the ancho
+     */
+    public int getAncho() {
+        return ancho;
+    }
+
+    /**
+     * @param ancho the ancho to set
+     */
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
+    }
+
+    /**
+     * @return the alto
+     */
+    public int getAlto() {
+        return alto;
+    }
+
+    /**
+     * @param alto the alto to set
+     */
+    public void setAlto(int alto) {
+        this.alto = alto;
     }
     
 }
