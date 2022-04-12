@@ -54,6 +54,12 @@ public class Inicio extends javax.swing.JFrame {
         Mapa1.getMisElementos().add(dos);
         Mapa1.getMisElementos().add(ultimo);
         Mapa1.getMisElementos().add(penultimo); 
+        //Creacion bordes mapa
+        bordes_mapa(Mapa1);
+        //Creacion de muros primera parte     
+        muros_superior(Mapa1);
+        //Creacion de muros segunda parte
+        muros_inferior(Mapa1);
         
         //Creacion de jugadores
         this.newPlayer = new player(200,"src/pictures/bola1.png",25,115,18,18,"globo_rojo");
@@ -63,6 +69,89 @@ public class Inicio extends javax.swing.JFrame {
         Thread proceso = new Thread(lienzo1);
         this.lienzo1.setActivo(true);
         proceso.start();
+        
+    }
+    public void bordes_mapa(mapa Mapa1){
+        barrier top = new barrier(Color.BLACK,0,0,800,20,"top");
+        barrier right = new barrier(Color.BLACK,785,0,15,500,"rigth");
+        barrier left = new barrier(Color.BLACK,0,0,15,500,"left");
+        barrier down = new barrier(Color.BLACK,0,500,800,20,"down");
+        barrier middle = new barrier(Color.BLACK,0,250,800,15,"middle");
+        Mapa1.getMisElementos().add(top);
+        Mapa1.getMisElementos().add(right);
+        Mapa1.getMisElementos().add(left);
+        Mapa1.getMisElementos().add(down);
+        Mapa1.getMisElementos().add(middle);
+    }
+    public void muros_superior(mapa Mapa1){
+        
+        barrier uno = new barrier(Color.BLACK,0,0,50,130,"left");
+        barrier dos  = new barrier(Color.BLACK,0,175,50,80,"left");
+        
+        barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
+        barrier penultimo  = new barrier(Color.BLACK,750,150,50,100,"rigth");
+        
+        barrier ctop = new barrier(Color.BLACK,95,100,105,30,"top-down");
+        barrier cright = new barrier(Color.BLACK,170,65,30,60,"rigth");
+        barrier cleft = new barrier(Color.BLACK,95,65,30,60,"left");
+        barrier cdown = new barrier(Color.BLACK,95,175,105,30,"down");
+        
+        barrier mtop  = new barrier(Color.BLACK,245,0,30,130,"rigth-top");
+        barrier mdown  = new barrier(Color.BLACK,245,175,30,80,"rigth-down");
+        
+        barrier mmid  = new barrier(Color.BLACK,320,65,80,140,"mid");
+        
+        barrier ftop  = new barrier(Color.BLACK,600,0,30,205,"rigth-top");
+        barrier door = new barrier(Color.BLACK,610,205,10,45,"rigth-down");
+        
+        Mapa1.getMisElementos().add(uno);
+        Mapa1.getMisElementos().add(dos);
+        Mapa1.getMisElementos().add(ultimo);
+        Mapa1.getMisElementos().add(penultimo); 
+        Mapa1.getMisElementos().add(ctop);
+        Mapa1.getMisElementos().add(cright);
+        Mapa1.getMisElementos().add(cleft);
+        Mapa1.getMisElementos().add(cdown);
+        Mapa1.getMisElementos().add(mtop);
+        Mapa1.getMisElementos().add(mdown);
+        Mapa1.getMisElementos().add(mmid);
+        Mapa1.getMisElementos().add(ftop);
+        Mapa1.getMisElementos().add(door);
+    }
+    public void muros_inferior(mapa Mapa1){
+        
+        barrier dosuno = new barrier(Color.BLACK,0,265,50,110,"left");
+        barrier dosdos  = new barrier(Color.BLACK,0,420,50,80,"left");
+        
+        barrier dosultimo = new barrier(Color.BLACK,750,265,50,90,"rigth");
+        barrier dospenultimo  = new barrier(Color.BLACK,750,400,50,100,"rigth");
+        
+        barrier dosctop = new barrier(Color.BLACK,95,345,105,30,"top-down");
+        barrier doscright = new barrier(Color.BLACK,170,310,30,60,"rigth");
+        barrier doscleft = new barrier(Color.BLACK,95,310,30,60,"left");
+        barrier doscdown = new barrier(Color.BLACK,95,420,105,30,"down");
+        
+        barrier dosmtop  = new barrier(Color.BLACK,245,245,30,130,"rigth-top");
+        barrier dosmdown  = new barrier(Color.BLACK,245,420,30,80,"rigth-down");
+        
+        barrier dosmmid  = new barrier(Color.BLACK,320,310,80,140,"mid");
+        
+        barrier dosftop  = new barrier(Color.BLACK,600,250,30,205,"rigth-top");
+        barrier dosdoor = new barrier(Color.BLACK,610,455,10,45,"rigth-down");
+        
+        Mapa1.getMisElementos().add(dosuno);
+        Mapa1.getMisElementos().add(dosdos);
+        Mapa1.getMisElementos().add(dosultimo);
+        Mapa1.getMisElementos().add(dospenultimo);
+        Mapa1.getMisElementos().add(dosctop);
+        Mapa1.getMisElementos().add(doscright);
+        Mapa1.getMisElementos().add(doscleft);
+        Mapa1.getMisElementos().add(doscdown);
+        Mapa1.getMisElementos().add(dosmtop);
+        Mapa1.getMisElementos().add(dosmdown);
+        Mapa1.getMisElementos().add(dosmmid);
+        Mapa1.getMisElementos().add(dosftop);
+        Mapa1.getMisElementos().add(dosdoor);
         
     }
 
@@ -82,7 +171,8 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        lienzo1.setBackground(new java.awt.Color(255, 255, 255));
+        lienzo1.setBackground(new java.awt.Color(204, 204, 204));
+        lienzo1.setPreferredSize(new java.awt.Dimension(700, 400));
 
         javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
         lienzo1.setLayout(lienzo1Layout);
@@ -92,7 +182,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         lienzo1Layout.setVerticalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGap(0, 520, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,12 +190,16 @@ public class Inicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
