@@ -114,9 +114,7 @@ public class Inicio extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         this.setFocusable(true);
         if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'|| evt.getExtendedKeyCode() == KeyEvent.VK_UP){
-            if (verificar()== true){
-                this.newPlayer.setY(this.newPlayer.getX()-5);
-            }
+           this.newPlayer.setY(this.newPlayer.getY()-5);
         }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'|| evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
            this.newPlayer.setX(this.newPlayer.getX()-5);
         }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S'|| evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
@@ -126,15 +124,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyPressed
     
-    public boolean verificar(){
-        boolean respuesta = false ;
-        for (element actual:this.lienzo1.getMiMapa().getMisElementos()){
-            if (this.newPlayer.getArea().intersects(actual.getArea())){
-                respuesta = true;
-            } 
-        }
-        return respuesta;
-    }
     /**
      * @param args the command line arguments
      */
