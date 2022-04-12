@@ -85,33 +85,5 @@ public abstract class element {
     public void setId(String id) {
         this.id = id;
     }
-
-    /**
-     * @return the ancho
-     */
-    public int getAncho() {
-        return ancho;
-    }
-
-    /**
-     * @param ancho the ancho to set
-     */
-    public void setAncho(int ancho) {
-        this.ancho = ancho;
-    }
-
-    /**
-     * @return the alto
-     */
-    public int getAlto() {
-        return alto;
-    }
-
-    /**
-     * @param alto the alto to set
-     */
-    public void setAlto(int alto) {
-        this.alto = alto;
-    }
     
 }
