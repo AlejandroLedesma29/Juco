@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  *
  * @author girveos
  */
-public class healing extends Image{
+public class healing extends Images{
     private int cantidad_aumento;
 
     public healing(int cantidad_aumento, String ruta, int x, int y, int ancho, int alto, String id) {

@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  *
  * @author girveos
  */
-public class player extends Image {
+public class player extends Images {
     private int nivel_aire;
 
     public player(int nivel_aire, String ruta, int x, int y, int ancho, int alto, String id) {

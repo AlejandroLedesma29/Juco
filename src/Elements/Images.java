@@ -11,10 +11,10 @@ import java.awt.Rectangle;
  *
  * @author L E D E S M A
  */
-public abstract class Image extends element{
+public abstract class Images extends element{
     private String ruta;
 
-    public Image(String ruta, int x, int y, int ancho, int alto, String id) {
+    public Images(String ruta, int x, int y, int ancho, int alto, String id) {
         super(x, y, ancho, alto, id);
         this.ruta = ruta;
         Rectangle area = new Rectangle(x, y, ancho,alto);

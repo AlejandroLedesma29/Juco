@@ -5,7 +5,7 @@
  */
 package juco_game;
 
-import Elements.Image;
+import Elements.Images;
 import Elements.barrier;
 import Elements.element;
 import Elements.mapa;
@@ -38,8 +38,8 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             for(element ActualE :this.getMiMapa().getMisElementos()){
                 if(ActualE instanceof barrier){
                     Dibujarbarrier(g,(barrier)ActualE);
-                }else if(ActualE instanceof Image){
-                    dibujarImagen(g,(Image)ActualE);
+                }else if(ActualE instanceof Images){
+                    dibujarImagen(g,(Images)ActualE);
                 }
         }
     }
@@ -50,7 +50,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         g.drawRect(elemento.getX(),elemento.getY(),elemento.getAncho(),elemento.getAlto());
         
     }
-    public void dibujarImagen(Graphics g,Image laImagen){
+    public void dibujarImagen(Graphics g,Images laImagen){
     Toolkit t = Toolkit.getDefaultToolkit ();
     java.awt.Image imagen = t.getImage (laImagen.getRuta());
     g.drawImage(imagen,

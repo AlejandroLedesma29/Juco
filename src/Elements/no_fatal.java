@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  *
  * @author girveos
  */
-public class no_fatal extends Image{
+public class no_fatal extends Images{
     private int cantidad_daño;
 
     public no_fatal(int cantidad_daño, String ruta, int x, int y, int ancho, int alto, String id) {
