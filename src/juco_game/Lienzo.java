@@ -5,13 +5,18 @@
  */
 package juco_game;
 
-import Elements.Image;
+import Elements.Images;
 import Elements.barrier;
 import Elements.element;
 import Elements.mapa;
+import Elements.player;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,8 +43,8 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             for(element ActualE :this.getMiMapa().getMisElementos()){
                 if(ActualE instanceof barrier){
                     Dibujarbarrier(g,(barrier)ActualE);
-                }else if(ActualE instanceof Image){
-                    dibujarImagen(g,(Image)ActualE);
+                }else if(ActualE instanceof Images){
+                    dibujarImagen(g,(player)ActualE);
                 }
         }
     }
@@ -50,14 +55,14 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         g.drawRect(elemento.getX(),elemento.getY(),elemento.getAncho(),elemento.getAlto());
         
     }
-    public void dibujarImagen(Graphics g,Image laImagen){
+    public void dibujarImagen(Graphics g,Images laimagen){
     Toolkit t = Toolkit.getDefaultToolkit ();
-    java.awt.Image imagen = t.getImage (laImagen.getRuta());
+    Image imagen = t.getImage (laimagen.getRuta());
     g.drawImage(imagen,
-                laImagen.getX(),
-                laImagen.getY(),
-                laImagen.getAncho(),
-                laImagen.getAlto(),
+                laimagen.getX(),
+                laimagen.getY(),
+                laimagen.getAncho(),
+                laimagen.getAlto(),
                 this);
     }
     /**
@@ -109,11 +114,39 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        while(this.activo){
+            
+            //Mover todas las figuras
+            for(element actual: this.miMapa.getMisElementos()){
+                if (actual instanceof player){
+                    boolean borde = verificarBorde((player)actual);
+                    if (borde){
+                        System.out.println("se chocha");
+                    }
+                }
+            }
+            repaint();
+        }
+
     }
-
     
-
+    public void esperar(int milisegundos){
+        try {
+                Thread.sleep(milisegundos);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public boolean verificarBorde(player jugador){
+        boolean respuesta = false;
+        for(element actual: this.miMapa.getMisElementos()){
+            if (jugador != actual && jugador.getArea().intersects(actual.getArea())){
+                respuesta = true;
+            }
+        }
+        return respuesta;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

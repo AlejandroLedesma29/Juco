@@ -5,17 +5,20 @@
  */
 package juco_game;
 
+import Elements.Images;
 import Elements.barrier;
 import Elements.mapa;
 import Elements.player;
+import Elements.element;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author L E D E S M A
  */
 public class Inicio extends javax.swing.JFrame {
-
+    player newPlayer;
     /**
      * Creates new form Inicio
      */
@@ -38,6 +41,7 @@ public class Inicio extends javax.swing.JFrame {
         barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
         barrier penultimo  = new barrier(Color.BLACK,750,150,50,100,"rigth");
         
+ 
         
         //barrier tres = new barrier(Color.BLACK,0,0,,15,"top");
 
@@ -52,8 +56,8 @@ public class Inicio extends javax.swing.JFrame {
         Mapa1.getMisElementos().add(penultimo); 
         
         //Creacion de jugadores
-        player Jugador1 = new player(200,"src/pictures/globoRed",20,125,20,20,"globo_rojo");
-        Mapa1.getMisElementos().add(Jugador1);
+        this.newPlayer = new player(200,"src/pictures/bola1.png",25,115,18,18,"globo_rojo");
+        Mapa1.getMisElementos().add(this.newPlayer);
         
         lienzo1.setMiMapa(Mapa1);
         Thread proceso = new Thread(lienzo1);
@@ -72,19 +76,23 @@ public class Inicio extends javax.swing.JFrame {
         lienzo1 = new juco_game.Lienzo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lienzo1.setBackground(new java.awt.Color(255, 255, 255));
-        lienzo1.setPreferredSize(new java.awt.Dimension(700, 400));
 
         javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
         lienzo1.setLayout(lienzo1Layout);
         lienzo1Layout.setHorizontalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         lienzo1Layout.setVerticalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 489, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,21 +100,41 @@ public class Inicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        this.setFocusable(true);
+        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'|| evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+            if (verificar()== true){
+                this.newPlayer.setY(this.newPlayer.getX()-5);
+            }
+        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'|| evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           this.newPlayer.setX(this.newPlayer.getX()-5);
+        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S'|| evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           this.newPlayer.setY(this.newPlayer.getY()+5);
+        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'|| evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           this.newPlayer.setX(this.newPlayer.getX()+5);
+        }
+    }//GEN-LAST:event_formKeyPressed
+    
+    public boolean verificar(){
+        boolean respuesta = false ;
+        for (element actual:this.lienzo1.getMiMapa().getMisElementos()){
+            if (this.newPlayer.getArea().intersects(actual.getArea())){
+                respuesta = true;
+            } 
+        }
+        return respuesta;
+    }
     /**
      * @param args the command line arguments
      */

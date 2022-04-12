@@ -11,7 +11,7 @@ import java.awt.Rectangle;
  *
  * @author girveos
  */
-public class fatal extends Image{
+public class fatal extends Images{
     private Color color;
 
     public fatal(Color color, String ruta, int x, int y, int ancho, int alto, String id) {
