@@ -113,6 +113,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
             }
         return p;
     }
+    
     public void bordes_mapa(mapa Mapa1){
         barrier top = new barrier(Color.BLACK,0,0,800,20,"top");
         barrier right = new barrier(Color.BLACK,785,0,15,500,"rigth");
