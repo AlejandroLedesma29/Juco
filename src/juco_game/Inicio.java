@@ -10,6 +10,7 @@ import Elements.barrier;
 import Elements.mapa;
 import Elements.player;
 import Elements.element;
+import Elements.no_fatal;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,7 +29,8 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         initComponents();
         
         mapa Mapa1 = new mapa("001");
-
+        //Creacion de chuzos
+        creacion_chuzos("src/pictures/chuzo.png",Mapa1,"src/pictures/chuzo2.png");
         //Creacion bordes mapa
         bordes_mapa(Mapa1);
         //Creacion de muros primera parte     
@@ -37,7 +39,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         muros_inferior(Mapa1);
         
         //Creacion de jugadores
-        this.newPlayer = new player(200,"src/pictures/bola1.png",25,142,18,18,"globo_rojo");
+        this.newPlayer = new player(200,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
         
         this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
@@ -48,6 +50,43 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         this.lienzo1.setActivo(true);
         proceso.start();
         
+    }
+    public void creacion_chuzos(String ruta1,mapa Mapa1,String ruta2){
+        int i = 51;
+        int p = 0;
+        while(i<=227){
+            no_fatal c1 = new no_fatal(20,ruta1,i,240,20,20,"chuzo");
+            Mapa1.getMisElementos().add(c1);
+            
+            no_fatal c2 = new no_fatal(20,ruta2,i,10,20,20,"chuzo");
+            Mapa1.getMisElementos().add(c2);
+            
+            p = chuzos_escalones(i, p, ruta1, Mapa1,ruta2);
+            i+=7;
+        }
+    }
+    public int chuzos_escalones (int i,int p,String ruta1,mapa Mapa1,String ruta2){
+        if(i>=93 && i <= 190){
+                if(p<3){
+                    no_fatal c2 = new no_fatal(20,ruta1,i,55,20,30,"chuzo");
+                    Mapa1.getMisElementos().add(c2);
+                }
+                if(p>=3 && p<10){
+                    no_fatal c2 = new no_fatal(20,ruta1,i,90,20,30,"chuzo");
+                    Mapa1.getMisElementos().add(c2);
+                }
+                if(p>=10 && p<13){
+                    no_fatal c2 = new no_fatal(20,ruta1,i+5,55,20,30,"chuzo");
+                    Mapa1.getMisElementos().add(c2);
+            }
+                no_fatal c2 = new no_fatal(20,ruta1,i,165,18,30,"chuzo");
+                Mapa1.getMisElementos().add(c2);
+                
+                no_fatal c1 = new no_fatal(20,ruta2,i,113,18,30,"chuzo");
+                    Mapa1.getMisElementos().add(c1);
+                p++;
+            }
+        return p;
     }
     public void bordes_mapa(mapa Mapa1){
         barrier top = new barrier(Color.BLACK,0,0,800,20,"top");
@@ -63,7 +102,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     }
     public void muros_superior(mapa Mapa1){
         
-        barrier uno = new barrier(Color.BLACK,0,0,50,130,"left");
+        barrier uno = new barrier(Color.BLACK,0,0,50,125,"left");
         barrier dos  = new barrier(Color.BLACK,0,170,50,80,"left");
         
         barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
@@ -189,7 +228,6 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
            this.newPlayer.setX(this.newPlayer.getX()-5);
         }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
-                this.newPlayer.setY(this.newPlayer.getY()+5);
            this.newPlayer.setY(this.newPlayer.getY()+5);
         }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
            this.newPlayer.setX(this.newPlayer.getX()+5);
