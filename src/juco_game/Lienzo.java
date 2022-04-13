@@ -123,6 +123,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         if(veriificarColisiones((player)actual)){
                             this.activo = false;
                         }
+
                 }
                 actual.actualizarArea();
             } 
@@ -154,6 +155,7 @@ public boolean veriificarColisiones(player jugador){
         }
         return respuesta;
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

@@ -12,13 +12,15 @@ import Elements.player;
 import Elements.element;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
  * @author L E D E S M A
  */
-public class Inicio extends javax.swing.JFrame {
+public class Inicio extends javax.swing.JFrame implements KeyListener{
     player newPlayer;
+    player newPlayer2;
     /**
      * Creates new form Inicio
      */
@@ -37,6 +39,9 @@ public class Inicio extends javax.swing.JFrame {
         //Creacion de jugadores
         this.newPlayer = new player(200,"src/pictures/bola1.png",25,142,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
+        
+        this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
+        Mapa1.getMisElementos().add(this.newPlayer2);
         
         lienzo1.setMiMapa(Mapa1);
         Thread proceso = new Thread(lienzo1);
@@ -189,6 +194,18 @@ public class Inicio extends javax.swing.JFrame {
         }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
            this.newPlayer.setX(this.newPlayer.getX()+5);
         }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+           this.newPlayer2.setY(this.newPlayer2.getY()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           this.newPlayer2.setX(this.newPlayer2.getX()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           this.newPlayer2.setY(this.newPlayer2.getY()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           this.newPlayer2.setX(this.newPlayer2.getX()+5);
+        } 
     }//GEN-LAST:event_formKeyPressed
     
     /**
@@ -229,4 +246,19 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private juco_game.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
