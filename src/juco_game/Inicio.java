@@ -59,12 +59,12 @@ public class Inicio extends javax.swing.JFrame{
         Mapa1.getMisElementos().add(curaBaja);
         Mapa1.getMisElementos().add(curaalta);
         //Creacion fatales
-        fatal f1 = new  fatal(true, true,"src/pictures/bomba.png", 280,25,15,15,"bomba");
-        fatal f2 = new  fatal(true, false,"src/pictures/bomba.png", 420,45,15,15,"bomba");
-        fatal f3 = new  fatal(false, true,"src/pictures/bomba.png", 280,65,15,15,"bomba");
-        fatal f4 = new  fatal(false, false,"src/pictures/bomba.png", 300,190,15,15,"bomba");
-        fatal f5 = new  fatal(true, true,"src/pictures/bomba.png", 280,210,15,15,"bomba");
-        fatal f6 = new  fatal(true, false,"src/pictures/bomba.png", 420,230,15,15,"bomba");
+        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", 280,25,15,15,"bomba");
+        fatal f2 = new  fatal(true,false, false,"src/pictures/bomba.png", 420,45,15,15,"bomba");
+        fatal f3 = new  fatal(false,true, true,"src/pictures/bomba.png", 280,65,15,15,"bomba");
+        fatal f4 = new  fatal(false,true, false,"src/pictures/bomba.png", 300,190,15,15,"bomba");
+        fatal f5 = new  fatal(true,false, true,"src/pictures/bomba.png", 280,210,15,15,"bomba");
+        fatal f6 = new  fatal(true,false, false,"src/pictures/bomba.png", 420,230,15,15,"bomba");
         Mapa1.getMisElementos().add(f1);
         Mapa1.getMisElementos().add(f2);
         Mapa1.getMisElementos().add(f3);
@@ -90,13 +90,13 @@ public class Inicio extends javax.swing.JFrame{
     
     public void crearFatalesAbajo(mapa Mapa1){
           //Creacion fatales
-        fatal f1 = new  fatal(true,false, "src/pictures/bolaChuzos.png",280,268,15,15,"horizontal");
-        fatal f2 = new  fatal(true,false, "src/pictures/bolaChuzos.png",420,294,15,15,"horizontal");
-        fatal f3 = new  fatal(true,false, "src/pictures/bolaChuzos.png",280,455,15,15,"horizontal");
-        fatal f4 = new  fatal(true,false, "src/pictures/bolaChuzos.png",420,485,15,15,"horizontal");
+        fatal f1 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",280,268,15,15,"horizontal");
+        fatal f2 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",420,294,15,15,"horizontal");
+        fatal f3 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",280,455,15,15,"horizontal");
+        fatal f4 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",420,485,15,15,"horizontal");
         //Creacion fatales 
-        fatal f5 = new  fatal(true,false, "src/pictures/bolaChuzos.png",280, 308,15,15,"vertical");
-        fatal f6 = new  fatal(true,false, "src/pictures/bolaChuzos.png",300,435,15,15,"vertical");
+        fatal f5 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",280, 308,15,15,"vertical");
+        fatal f6 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",300,435,15,15,"vertical");
         
         
         Mapa1.getMisElementos().add(f1);

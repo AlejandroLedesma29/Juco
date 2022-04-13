@@ -14,10 +14,12 @@ import java.awt.Rectangle;
 public class fatal extends Images{
     private boolean Horizontal;
     private boolean vertical;
+    private boolean Adelante;
 
-    public fatal(boolean Horizontal,boolean vertical, String ruta, int x, int y, int ancho, int alto, String id) {
+    public fatal(boolean Horizontal,boolean vertical,boolean Adelante, String ruta, int x, int y, int ancho, int alto, String id) {
         super(ruta, x, y, ancho, alto, id);
         this.Horizontal = Horizontal;
+        this.Adelante = Adelante;
         this.vertical = vertical;
         Rectangle area = new Rectangle(x, y, ancho,alto);
         this.setArea(area);
@@ -56,6 +58,20 @@ public class fatal extends Images{
      */
     public void setVertical(boolean vertical) {
         this.vertical = vertical;
+    }
+
+    /**
+     * @return the Adelante
+     */
+    public boolean isAdelante() {
+        return Adelante;
+    }
+
+    /**
+     * @param Adelante the Adelante to set
+     */
+    public void setAdelante(boolean Adelante) {
+        this.Adelante = Adelante;
     }
     
 

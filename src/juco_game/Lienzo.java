@@ -121,44 +121,39 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         while(this.activo){
             //Mover todas las figuras
             for(element actual: this.miMapa.getMisElementos()){
-                if (actual instanceof player){
-                    verificar_no_fatal_choque((player)actual);
-                    System.out.println(((player) actual).getNivel_aire());
-                        if(veriificarColisiones((player)actual) || ((player) actual).getNivel_aire() == 0){
-                            this.activo = false;
-                        }
-
-                } else if (actual instanceof fatal){
-                    if (((fatal)actual).getId().equals("horizontal")){
-                        moverX((fatal)actual);
-                        validar_fronteras_horizontales((fatal)actual);
-                    } else {
-                        moverY((fatal)actual);
-                        validar_fronteras_verticales((fatal)actual);
-                    }
-                    
-                if (actual instanceof fatal){
-                 if(((fatal)actual).isHorizontal()){
-                     mover_horizontal(((fatal)actual));
-                 }else{
-                     mover_vertical(((fatal)actual));
-                 }   
-                }
-                    if (actual instanceof player){
+                 if (actual instanceof player){
+                    if(!veriificarColisiones((player)actual)){
                         verificar_no_fatal_choque((player)actual);
                         System.out.println(((player) actual).getNivel_aire());
-                            if(((player) actual).getNivel_aire() == 0){
-                                reset_player((player)actual);
+                        if(((player) actual).getNivel_aire() == 0){
+                            reset_player((player)actual);
+                        }
+                        }
+                    } 
+                    if (actual instanceof fatal){
+                        if (((fatal)actual).getY()<250){
+                            if(((fatal)actual).isHorizontal()){
+                                mover_horizontal(((fatal)actual));
+                            }else{
+                                mover_vertical(((fatal)actual));
+                            } 
+                        } else {
+                            if (((fatal)actual).getId().equals("horizontal")){
+                                moverX((fatal)actual);
+                                validar_fronteras_horizontales((fatal)actual);
+                            } else {
+                                moverY((fatal)actual);
+                                validar_fronteras_verticales((fatal)actual);
                             }
-
+                        }
                     }
                 actual.actualizarArea();
             }
             esperar(25);
             repaint();
         }
-
     }
+        
     public void moverX(fatal actual){
         if (actual.isHorizontal()) {
             actual.setX(actual.getX()+1);
