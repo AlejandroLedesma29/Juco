@@ -10,8 +10,12 @@ import java.awt.Rectangle;
  *
  * @author girveos
  */
-public class player extends Images {
+public class player extends Images{
     private int nivel_aire;
+    private boolean moverArriba = false;
+    private boolean moverAbajo = false;
+    private boolean moverIzquierda = false;
+    private boolean moverDerecha = false;
 
     public player(int nivel_aire, String ruta, int x, int y, int ancho, int alto, String id) {
         super(ruta, x, y, ancho, alto, id);
@@ -34,5 +38,77 @@ public class player extends Images {
     public void setNivel_aire(int nivel_aire) {
         this.nivel_aire = nivel_aire;
     }
+
+    /**
+     * @return the moverArriba
+     */
+    public boolean isMoverArriba() {
+        return moverArriba;
+    }
+
+    /**
+     * @param moverArriba the moverArriba to set
+     */
+    public void setMoverArriba(boolean moverArriba) {
+        this.moverArriba = moverArriba;
+    }
+
+    /**
+     * @return the moverAbajo
+     */
+    public boolean isMoverAbajo() {
+        return moverAbajo;
+    }
+
+    /**
+     * @param moverAbajo the moverAbajo to set
+     */
+    public void setMoverAbajo(boolean moverAbajo) {
+        this.moverAbajo = moverAbajo;
+    }
+
+    /**
+     * @return the moverIzquierda
+     */
+    public boolean isMoverIzquierda() {
+        return moverIzquierda;
+    }
+
+    /**
+     * @param moverIzquierda the moverIzquierda to set
+     */
+    public void setMoverIzquierda(boolean moverIzquierda) {
+        this.moverIzquierda = moverIzquierda;
+    }
+
+    /**
+     * @return the moverDerecha
+     */
+    public boolean isMoverDerecha() {
+        return moverDerecha;
+    }
+
+    /**
+     * @param moverDerecha the moverDerecha to set
+     */
+    public void setMoverDerecha(boolean moverDerecha) {
+        this.moverDerecha = moverDerecha;
+    }
     
+    public void subir(){
+        this.setY(this.getY()-1);
+    }
+    
+    public void bajar(){
+        this.setY(this.getY()+1);
+    }
+    
+    public void derecha(){
+        this.setX(this.getX()+1);
+    }
+    
+    public void izquierda(){
+        this.setX(this.getX()-1);
+    }
+
 }

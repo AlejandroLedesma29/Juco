@@ -12,13 +12,15 @@ import Elements.player;
 import Elements.element;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
  * @author L E D E S M A
  */
-public class Inicio extends javax.swing.JFrame {
+public class Inicio extends javax.swing.JFrame implements KeyListener{
     player newPlayer;
+    player newPlayer2;
     /**
      * Creates new form Inicio
      */
@@ -26,34 +28,6 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         mapa Mapa1 = new mapa("001");
-        
-        //Creacion de muros
-        
-        barrier top = new barrier(Color.BLACK,0,0,800,15,"top");
-        barrier right = new barrier(Color.BLACK,785,0,15,500,"rigth");
-        barrier left = new barrier(Color.BLACK,0,0,15,500,"left");
-        barrier down = new barrier(Color.BLACK,0,485,800,15,"down");
-        barrier middle = new barrier(Color.BLACK,0,245,800,15,"middle");
-        
-        barrier uno = new barrier(Color.BLACK,0,0,50,100,"left");
-        barrier dos  = new barrier(Color.BLACK,0,150,50,100,"left");
-        
-        barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
-        barrier penultimo  = new barrier(Color.BLACK,750,150,50,100,"rigth");
-        
- 
-        
-        //barrier tres = new barrier(Color.BLACK,0,0,,15,"top");
-
-        Mapa1.getMisElementos().add(top);
-        Mapa1.getMisElementos().add(right);
-        Mapa1.getMisElementos().add(left);
-        Mapa1.getMisElementos().add(down);
-        Mapa1.getMisElementos().add(middle);
-        Mapa1.getMisElementos().add(uno);
-        Mapa1.getMisElementos().add(dos);
-        Mapa1.getMisElementos().add(ultimo);
-        Mapa1.getMisElementos().add(penultimo); 
         //Creacion bordes mapa
         bordes_mapa(Mapa1);
         //Creacion de muros primera parte     
@@ -62,8 +36,11 @@ public class Inicio extends javax.swing.JFrame {
         muros_inferior(Mapa1);
         
         //Creacion de jugadores
-        this.newPlayer = new player(200,"src/pictures/bola1.png",25,115,18,18,"globo_rojo");
+        this.newPlayer = new player(200,"src/pictures/bola1.png",25,142,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
+        
+        this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
+        Mapa1.getMisElementos().add(this.newPlayer2);
         
         lienzo1.setMiMapa(Mapa1);
         Thread proceso = new Thread(lienzo1);
@@ -207,15 +184,30 @@ public class Inicio extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         this.setFocusable(true);
-        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'|| evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
            this.newPlayer.setY(this.newPlayer.getY()-5);
-        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'|| evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+        }
+        if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
            this.newPlayer.setX(this.newPlayer.getX()-5);
-        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S'|| evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+        }
+        if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S'){
            this.newPlayer.setY(this.newPlayer.getY()+5);
-        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'|| evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+        }
+        if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
            this.newPlayer.setX(this.newPlayer.getX()+5);
         }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+           this.newPlayer2.setY(this.newPlayer2.getY()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           this.newPlayer2.setX(this.newPlayer2.getX()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           this.newPlayer2.setY(this.newPlayer2.getY()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           this.newPlayer2.setX(this.newPlayer2.getX()+5);
+        } 
     }//GEN-LAST:event_formKeyPressed
     
     /**
@@ -256,4 +248,19 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private juco_game.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

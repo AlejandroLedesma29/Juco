@@ -119,10 +119,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             //Mover todas las figuras
             for(element actual: this.miMapa.getMisElementos()){
                 if (actual instanceof player){
-                    boolean borde = verificarBorde((player)actual);
-                    if (borde){
-                        System.out.println("se chocha");
-                    }
+
                 }
             }
             repaint();
@@ -137,16 +134,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    
-    public boolean verificarBorde(player jugador){
-        boolean respuesta = false;
-        for(element actual: this.miMapa.getMisElementos()){
-            if (jugador != actual && jugador.getArea().intersects(actual.getArea())){
-                respuesta = true;
-            }
-        }
-        return respuesta;
-    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
