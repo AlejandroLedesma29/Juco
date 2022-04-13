@@ -11,6 +11,7 @@ import Elements.mapa;
 import Elements.player;
 import Elements.element;
 import Elements.fatal;
+import Elements.healing;
 import Elements.no_fatal;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -20,7 +21,7 @@ import java.awt.event.KeyListener;
  *
  * @author L E D E S M A
  */
-public class Inicio extends javax.swing.JFrame implements KeyListener{
+public class Inicio extends javax.swing.JFrame{
     player newPlayer;
     player newPlayer2;
     /**
@@ -49,6 +50,15 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         //Creacion de muros segunda parte
         muros_inferior(Mapa1);
         
+        //Creacion fatales bajos
+        crearFatalesAbajo(Mapa1);
+        
+        //crear puntos de salud
+        healing curaBaja = new healing(30, "src/pictures/cura.png", 138, 315, 20, 20,"cura_abajo");
+        healing curaalta = new healing(30, "src/pictures/cura.png", 138, 70, 20, 20,"cura_arriba");
+        Mapa1.getMisElementos().add(curaBaja);
+        Mapa1.getMisElementos().add(curaalta);
+        
         //Creacion de jugadores
         this.newPlayer = new player(20000,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
@@ -56,15 +66,32 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         this.newPlayer2 = new player(20000,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
         Mapa1.getMisElementos().add(this.newPlayer2);
         
-        //Creacion fatales
-        fatal f1 = new  fatal(null, "src/pictures/bomba.png", 400,100,15,15,"bomba");
-        Mapa1.getMisElementos().add(f1);
+      
         
         lienzo1.setMiMapa(Mapa1);
         Thread proceso = new Thread(lienzo1);
         this.lienzo1.setActivo(true);
         proceso.start();
         
+    }
+    
+    public void crearFatalesAbajo(mapa Mapa1){
+          //Creacion fatales
+        fatal f1 = new  fatal(true,false, "src/pictures/bolaChuzos.png",280,268,15,15,"horizontal");
+        fatal f2 = new  fatal(true,false, "src/pictures/bolaChuzos.png",420,294,15,15,"horizontal");
+        fatal f3 = new  fatal(true,false, "src/pictures/bolaChuzos.png",280,455,15,15,"horizontal");
+        fatal f4 = new  fatal(true,false, "src/pictures/bolaChuzos.png",420,485,15,15,"horizontal");
+        //Creacion fatales 
+        fatal f5 = new  fatal(true,false, "src/pictures/bolaChuzos.png",280, 308,15,15,"vertical");
+        fatal f6 = new  fatal(true,false, "src/pictures/bolaChuzos.png",300,435,15,15,"vertical");
+        
+        
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        Mapa1.getMisElementos().add(f3);
+        Mapa1.getMisElementos().add(f4);
+        Mapa1.getMisElementos().add(f5);
+        Mapa1.getMisElementos().add(f6);
     }
     public void creacion_chuzos(int daño,String ruta1,mapa Mapa1,String ruta2){
         int i = 51;
@@ -210,7 +237,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     public void dibujarChuzozAAbajo3(int daño,mapa Mapa1){
         //Arriba pequeños
         int empezarX = 93;
-        int empezarY = 300;
+        int empezarY = 302;
         for (int i = 0; i < 3; i++) {
             no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
@@ -220,7 +247,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     public void dibujarChuzozAAbajo4(int daño,mapa Mapa1){
         //Arriba pequeños
         int empezarX = 170;
-        int empezarY = 300;
+        int empezarY = 302;
         for (int i = 0; i < 3; i++) {
             no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
@@ -371,18 +398,4 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     private juco_game.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

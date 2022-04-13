@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  *
  * @author girveos
  */
-public class player extends Images{
+public class player extends Images implements Runnable{
     private int nivel_aire;
     private boolean moverArriba = false;
     private boolean moverAbajo = false;
@@ -118,4 +118,20 @@ public class player extends Images{
         this.setX(this.getX()-1);
     }
 
+    @Override
+    public void run() {
+        System.out.println();
+	if (moverArriba) {
+            subir();
+	}
+        if (moverAbajo) {
+            bajar();
+	}
+	if (moverIzquierda) {
+            izquierda();
+	}
+	if (moverDerecha) {
+            derecha();
+        }
+    }
 }

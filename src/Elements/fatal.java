@@ -12,32 +12,50 @@ import java.awt.Rectangle;
  * @author girveos
  */
 public class fatal extends Images{
-    private Color color;
+    private boolean Horizontal;
+    private boolean vertical;
 
-    public fatal(Color color, String ruta, int x, int y, int ancho, int alto, String id) {
+    public fatal(boolean Horizontal,boolean vertical, String ruta, int x, int y, int ancho, int alto, String id) {
         super(ruta, x, y, ancho, alto, id);
-        this.color = color;
+        this.Horizontal = Horizontal;
+        this.vertical = vertical;
         Rectangle area = new Rectangle(x, y, ancho,alto);
         this.setArea(area);
     }
 
-    /**
-     * @return the color
-     */
-    public Color getColor() {
-        return color;
-    }
-
-    /**
-     * @param color the color to set
-     */
-    public void setColor(Color color) {
-        this.color = color;
-    }
+ 
     @Override
     public void actualizarArea() {
         Rectangle area = new Rectangle(this.getX(), this.getY(), this.getAncho(), this.getAlto());
         this.setArea(area);
+    }
+
+    /**
+     * @return the Horizontal
+     */
+    public boolean isHorizontal() {
+        return Horizontal;
+    }
+
+    /**
+     * @param Horizontal the Horizontal to set
+     */
+    public void setHorizontal(boolean Horizontal) {
+        this.Horizontal = Horizontal;
+    }
+
+    /**
+     * @return the vertical
+     */
+    public boolean isVertical() {
+        return vertical;
+    }
+
+    /**
+     * @param vertical the vertical to set
+     */
+    public void setVertical(boolean vertical) {
+        this.vertical = vertical;
     }
     
 

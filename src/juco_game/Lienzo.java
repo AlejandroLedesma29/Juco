@@ -8,6 +8,7 @@ package juco_game;
 import Elements.Images;
 import Elements.barrier;
 import Elements.element;
+import Elements.fatal;
 import Elements.mapa;
 import Elements.no_fatal;
 import Elements.player;
@@ -127,14 +128,51 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                             this.activo = false;
                         }
 
+                } else if (actual instanceof fatal){
+                    if (((fatal)actual).getId().equals("horizontal")){
+                        moverX((fatal)actual);
+                        validar_fronteras_horizontales((fatal)actual);
+                    } else {
+                        moverY((fatal)actual);
+                        validar_fronteras_verticales((fatal)actual);
+                    }
+                    
                 }
                 actual.actualizarArea();
             } 
+            esperar(15);
             repaint();
         }
 
     }
-    
+    public void moverX(fatal actual){
+        if (actual.isHorizontal()) {
+            actual.setX(actual.getX()+1);
+        }else{
+            actual.setX(actual.getX()-1);
+        }
+    }
+    public void moverY(fatal actual){
+        if (actual.isVertical()) {
+            actual.setY(actual.getY()+1);
+        }else{
+            actual.setY(actual.getY()-1);
+        }
+    }
+    public void validar_fronteras_horizontales(fatal actual){
+        if(actual.getX()>=420){
+            actual.setHorizontal(false);
+        }else if(actual.getX()<=280){
+            actual.setHorizontal(true);
+        }   
+    }
+    public void validar_fronteras_verticales(fatal actual){
+        if(actual.getY()<=308){
+            actual.setVertical(true);
+        }else if(actual.getY()>=435){
+            actual.setVertical(false);
+        }
+    }
     public void esperar(int milisegundos){
         try {
                 Thread.sleep(milisegundos);
