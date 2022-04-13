@@ -137,10 +137,24 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         validar_fronteras_verticales((fatal)actual);
                     }
                     
+                if (actual instanceof fatal){
+                 if(((fatal)actual).isHorizontal()){
+                     mover_horizontal(((fatal)actual));
+                 }else{
+                     mover_vertical(((fatal)actual));
+                 }   
                 }
+                    if (actual instanceof player){
+                        verificar_no_fatal_choque((player)actual);
+                        System.out.println(((player) actual).getNivel_aire());
+                            if(((player) actual).getNivel_aire() == 0){
+                                reset_player((player)actual);
+                            }
+
+                    }
                 actual.actualizarArea();
-            } 
-            esperar(15);
+            }
+            esperar(25);
             repaint();
         }
 
@@ -173,6 +187,42 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             actual.setVertical(false);
         }
     }
+    public void reset_player(player actual){
+        actual.setNivel_aire(200);
+        actual.setX(actual.getRespawn()[0]);
+        actual.setY(actual.getRespawn()[1]);
+    }
+    public void mover_vertical(fatal elemento){
+        if(elemento.isAdelante()){
+            if(elemento.getY()>=190){
+              elemento.setAdelante(false);
+            }else{
+              elemento.setY(elemento.getY()+1);
+        }
+        }else{
+            if(elemento.getY()<= 65){
+                elemento.setAdelante(true);
+            }else{
+                elemento.setY(elemento.getY()-1);
+            }
+        }
+    }
+    public void mover_horizontal(fatal elemento){
+        if(elemento.isAdelante()){
+            if(elemento.getX()>=420){
+              elemento.setAdelante(false);
+            }else{
+              elemento.setX(elemento.getX()+1);
+        }
+        }else{
+            if(elemento.getX()<= 280){
+                elemento.setAdelante(true);
+            }else{
+                elemento.setX(elemento.getX()-1);
+            }
+        }
+    }
+    
     public void esperar(int milisegundos){
         try {
                 Thread.sleep(milisegundos);
@@ -202,7 +252,6 @@ public boolean verificar_no_fatal_choque(player jugador){
         int i=0;
         while (i<this.miMapa.getMisElementos().size() && !respuesta) {
             if(this.miMapa.getMisElementos().get(i) instanceof no_fatal){
-                //System.out.println(this.miMapa.getMisElementos().get(i).getArea());
                 if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
                 respuesta = true;
                 int daño = ((no_fatal)this.miMapa.getMisElementos().get(i)).getCantidad_daño();

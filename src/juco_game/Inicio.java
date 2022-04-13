@@ -31,18 +31,18 @@ public class Inicio extends javax.swing.JFrame{
         initComponents();
         
         mapa Mapa1 = new mapa("001");
-        
+        int daño = 10;
         //Dibujar chuzos parte de abajo
-        dibujarChuzozAAbajo1(1,Mapa1);
-        dibujarChuzozAAbajo2(1,Mapa1);
-        dibujarChuzozAAbajo3(1,Mapa1);
-        dibujarChuzozAAbajo4(1,Mapa1);
-        dibujarChuzozAAbajo5(1,Mapa1);
-        dibujarChuzozAAbajo6(1,Mapa1);
-        dibujarChuzozAAbajo7(1,Mapa1);
+        dibujarChuzozAAbajo1(daño,Mapa1);
+        dibujarChuzozAAbajo2(daño,Mapa1);
+        dibujarChuzozAAbajo3(daño,Mapa1);
+        dibujarChuzozAAbajo4(daño,Mapa1);
+        dibujarChuzozAAbajo5(daño,Mapa1);
+        dibujarChuzozAAbajo6(daño,Mapa1);
+        dibujarChuzozAAbajo7(daño,Mapa1);
         
         //Creacion de chuzos
-        creacion_chuzos(1,"src/pictures/chuzo.png",Mapa1,"src/pictures/chuzo2.png");
+        creacion_chuzos(daño,"src/pictures/chuzo.png",Mapa1,"src/pictures/chuzo2.png");
         //Creacion bordes mapa
         bordes_mapa(Mapa1);
         //Creacion de muros primera parte     
@@ -58,12 +58,25 @@ public class Inicio extends javax.swing.JFrame{
         healing curaalta = new healing(30, "src/pictures/cura.png", 138, 70, 20, 20,"cura_arriba");
         Mapa1.getMisElementos().add(curaBaja);
         Mapa1.getMisElementos().add(curaalta);
+        //Creacion fatales
+        fatal f1 = new  fatal(true, true,"src/pictures/bomba.png", 280,25,15,15,"bomba");
+        fatal f2 = new  fatal(true, false,"src/pictures/bomba.png", 420,45,15,15,"bomba");
+        fatal f3 = new  fatal(false, true,"src/pictures/bomba.png", 280,65,15,15,"bomba");
+        fatal f4 = new  fatal(false, false,"src/pictures/bomba.png", 300,190,15,15,"bomba");
+        fatal f5 = new  fatal(true, true,"src/pictures/bomba.png", 280,210,15,15,"bomba");
+        fatal f6 = new  fatal(true, false,"src/pictures/bomba.png", 420,230,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        Mapa1.getMisElementos().add(f3);
+        Mapa1.getMisElementos().add(f4);
+        Mapa1.getMisElementos().add(f5);
+        Mapa1.getMisElementos().add(f6);
         
         //Creacion de jugadores
-        this.newPlayer = new player(20000,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
+        this.newPlayer = new player(200,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
         
-        this.newPlayer2 = new player(20000,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
+        this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
         Mapa1.getMisElementos().add(this.newPlayer2);
         
       
