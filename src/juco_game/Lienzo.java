@@ -12,7 +12,9 @@ import Elements.mapa;
 import Elements.player;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -115,16 +117,15 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     @Override
     public void run() {
         while(this.activo){
-            
             //Mover todas las figuras
             for(element actual: this.miMapa.getMisElementos()){
                 if (actual instanceof player){
-                    boolean borde = verificarBorde((player)actual);
-                    if (borde){
-                        System.out.println("se chocha");
-                    }
+                        if(veriificarColisiones((player)actual)){
+                            this.activo = false;
+                        }
                 }
-            }
+                actual.actualizarArea();
+            } 
             repaint();
         }
 
@@ -137,13 +138,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    
-    public boolean verificarBorde(player jugador){
+public boolean veriificarColisiones(player jugador){
         boolean respuesta = false;
-        for(element actual: this.miMapa.getMisElementos()){
-            if (jugador != actual && jugador.getArea().intersects(actual.getArea())){
+        //System.out.println(jugador.getArea());
+        int i=0;
+        while (i<this.miMapa.getMisElementos().size() && !respuesta) {
+            if(this.miMapa.getMisElementos().get(i) instanceof barrier){
+                //System.out.println(this.miMapa.getMisElementos().get(i).getArea());
+                if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
                 respuesta = true;
+                System.out.println("choque ");
+                }
             }
+            i++;
         }
         return respuesta;
     }

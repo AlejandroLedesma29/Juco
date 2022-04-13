@@ -24,7 +24,7 @@ public abstract class element {
         this.ancho = ancho;
         this.alto = alto;
         this.id = id;
-        Rectangle area = new Rectangle(x, y, ancho,alto);
+        Rectangle area = new Rectangle(x, y, alto ,ancho);
         this.setArea(area);
     }
 
@@ -111,7 +111,7 @@ public abstract class element {
     public void setId(String id) {
         this.id = id;
     }
-    
+    public abstract void actualizarArea();
     
     
 }

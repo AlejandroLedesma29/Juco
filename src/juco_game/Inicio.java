@@ -26,34 +26,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         mapa Mapa1 = new mapa("001");
-        
-        //Creacion de muros
-        
-        barrier top = new barrier(Color.BLACK,0,0,800,15,"top");
-        barrier right = new barrier(Color.BLACK,785,0,15,500,"rigth");
-        barrier left = new barrier(Color.BLACK,0,0,15,500,"left");
-        barrier down = new barrier(Color.BLACK,0,485,800,15,"down");
-        barrier middle = new barrier(Color.BLACK,0,245,800,15,"middle");
-        
-        barrier uno = new barrier(Color.BLACK,0,0,50,100,"left");
-        barrier dos  = new barrier(Color.BLACK,0,150,50,100,"left");
-        
-        barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
-        barrier penultimo  = new barrier(Color.BLACK,750,150,50,100,"rigth");
-        
- 
-        
-        //barrier tres = new barrier(Color.BLACK,0,0,,15,"top");
 
-        Mapa1.getMisElementos().add(top);
-        Mapa1.getMisElementos().add(right);
-        Mapa1.getMisElementos().add(left);
-        Mapa1.getMisElementos().add(down);
-        Mapa1.getMisElementos().add(middle);
-        Mapa1.getMisElementos().add(uno);
-        Mapa1.getMisElementos().add(dos);
-        Mapa1.getMisElementos().add(ultimo);
-        Mapa1.getMisElementos().add(penultimo); 
         //Creacion bordes mapa
         bordes_mapa(Mapa1);
         //Creacion de muros primera parte     
@@ -62,7 +35,7 @@ public class Inicio extends javax.swing.JFrame {
         muros_inferior(Mapa1);
         
         //Creacion de jugadores
-        this.newPlayer = new player(200,"src/pictures/bola1.png",25,115,18,18,"globo_rojo");
+        this.newPlayer = new player(200,"src/pictures/bola1.png",25,142,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
         
         lienzo1.setMiMapa(Mapa1);
@@ -86,7 +59,7 @@ public class Inicio extends javax.swing.JFrame {
     public void muros_superior(mapa Mapa1){
         
         barrier uno = new barrier(Color.BLACK,0,0,50,130,"left");
-        barrier dos  = new barrier(Color.BLACK,0,175,50,80,"left");
+        barrier dos  = new barrier(Color.BLACK,0,170,50,80,"left");
         
         barrier ultimo = new barrier(Color.BLACK,750,0,50,100,"rigth");
         barrier penultimo  = new barrier(Color.BLACK,750,150,50,100,"rigth");
@@ -172,7 +145,6 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         lienzo1.setBackground(new java.awt.Color(204, 204, 204));
-        lienzo1.setPreferredSize(new java.awt.Dimension(700, 400));
 
         javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
         lienzo1.setLayout(lienzo1Layout);
@@ -191,14 +163,14 @@ public class Inicio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -207,13 +179,14 @@ public class Inicio extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         this.setFocusable(true);
-        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'|| evt.getExtendedKeyCode() == KeyEvent.VK_UP){
-           this.newPlayer.setY(this.newPlayer.getY()-5);
-        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'|| evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
+            this.newPlayer.setY(this.newPlayer.getY()-5);
+        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
            this.newPlayer.setX(this.newPlayer.getX()-5);
-        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S'|| evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
+                this.newPlayer.setY(this.newPlayer.getY()+5);
            this.newPlayer.setY(this.newPlayer.getY()+5);
-        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'|| evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
            this.newPlayer.setX(this.newPlayer.getX()+5);
         }
     }//GEN-LAST:event_formKeyPressed

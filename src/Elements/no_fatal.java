@@ -20,6 +20,11 @@ public class no_fatal extends Images{
         this.setArea(area);
     }
 
+    @Override
+    public void actualizarArea() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), this.getAncho(), this.getAlto());
+        this.setArea(area);
+    }
     
 
    

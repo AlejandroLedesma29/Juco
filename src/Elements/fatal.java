@@ -34,6 +34,11 @@ public class fatal extends Images{
     public void setColor(Color color) {
         this.color = color;
     }
+    @Override
+    public void actualizarArea() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), this.getAncho(), this.getAlto());
+        this.setArea(area);
+    }
     
 
 }

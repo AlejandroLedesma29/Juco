@@ -35,4 +35,11 @@ public class player extends Images {
         this.nivel_aire = nivel_aire;
     }
     
+    @Override
+    public void actualizarArea() {
+        Rectangle area = new Rectangle(this.getX(), this.getY(), this.getAncho(), this.getAlto());
+        this.setArea(area);
+    }
+    
+    
 }
