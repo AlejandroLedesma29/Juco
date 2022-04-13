@@ -46,7 +46,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 if(ActualE instanceof barrier){
                     Dibujarbarrier(g,(barrier)ActualE);
                 }else if(ActualE instanceof Images){
-                    dibujarImagen(g,(player)ActualE);
+                    dibujarImagen(g,(Images)ActualE);
                 }
         }
     }
