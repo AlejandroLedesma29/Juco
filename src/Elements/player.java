@@ -12,6 +12,7 @@ import java.awt.Rectangle;
  */
 public class player extends Images{
     private int nivel_aire;
+    private int[]respawn = new int[2];
     private boolean moverArriba = false;
     private boolean moverAbajo = false;
     private boolean moverIzquierda = false;
@@ -22,6 +23,8 @@ public class player extends Images{
         this.nivel_aire = nivel_aire;
         Rectangle area = new Rectangle(x, y, ancho,alto);
         this.setArea(area);
+        this.respawn[0] = x;
+        this.respawn[1] = y;
     }
 
     
@@ -116,6 +119,20 @@ public class player extends Images{
     
     public void izquierda(){
         this.setX(this.getX()-1);
+    }
+
+    /**
+     * @return the respawn
+     */
+    public int[] getRespawn() {
+        return respawn;
+    }
+
+    /**
+     * @param respawn the respawn to set
+     */
+    public void setRespawn(int[] respawn) {
+        this.respawn = respawn;
     }
 
 }
