@@ -10,6 +10,7 @@ import Elements.barrier;
 import Elements.mapa;
 import Elements.player;
 import Elements.element;
+import Elements.fatal;
 import Elements.no_fatal;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -31,16 +32,16 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         mapa Mapa1 = new mapa("001");
         
         //Dibujar chuzos parte de abajo
-        dibujarChuzozAAbajo1(Mapa1);
-        dibujarChuzozAAbajo2(Mapa1);
-        dibujarChuzozAAbajo3(Mapa1);
-        dibujarChuzozAAbajo4(Mapa1);
-        dibujarChuzozAAbajo5(Mapa1);
-        dibujarChuzozAAbajo6(Mapa1);
-        dibujarChuzozAAbajo7(Mapa1);
+        dibujarChuzozAAbajo1(1,Mapa1);
+        dibujarChuzozAAbajo2(1,Mapa1);
+        dibujarChuzozAAbajo3(1,Mapa1);
+        dibujarChuzozAAbajo4(1,Mapa1);
+        dibujarChuzozAAbajo5(1,Mapa1);
+        dibujarChuzozAAbajo6(1,Mapa1);
+        dibujarChuzozAAbajo7(1,Mapa1);
         
         //Creacion de chuzos
-        creacion_chuzos("src/pictures/chuzo.png",Mapa1,"src/pictures/chuzo2.png");
+        creacion_chuzos(1,"src/pictures/chuzo.png",Mapa1,"src/pictures/chuzo2.png");
         //Creacion bordes mapa
         bordes_mapa(Mapa1);
         //Creacion de muros primera parte     
@@ -49,13 +50,15 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         muros_inferior(Mapa1);
         
         //Creacion de jugadores
-        this.newPlayer = new player(200,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
+        this.newPlayer = new player(20000,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
         Mapa1.getMisElementos().add(this.newPlayer);
         
-        this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
+        this.newPlayer2 = new player(20000,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
         Mapa1.getMisElementos().add(this.newPlayer2);
         
-        
+        //Creacion fatales
+        fatal f1 = new  fatal(null, "src/pictures/bomba.png", 400,100,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
         
         lienzo1.setMiMapa(Mapa1);
         Thread proceso = new Thread(lienzo1);
@@ -63,38 +66,38 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         proceso.start();
         
     }
-    public void creacion_chuzos(String ruta1,mapa Mapa1,String ruta2){
+    public void creacion_chuzos(int daño,String ruta1,mapa Mapa1,String ruta2){
         int i = 51;
         int p = 0;
         while(i<=227){
-            no_fatal c1 = new no_fatal(20,ruta1,i,240,20,20,"chuzo");
+            no_fatal c1 = new no_fatal(daño,ruta1,i,240,20,20,"chuzo");
             Mapa1.getMisElementos().add(c1);
             
-            no_fatal c2 = new no_fatal(20,ruta2,i,10,20,20,"chuzo");
+            no_fatal c2 = new no_fatal(daño,ruta2,i,10,20,20,"chuzo");
             Mapa1.getMisElementos().add(c2);
             
-            p = chuzos_escalones(i, p, ruta1, Mapa1,ruta2);
+            p = chuzos_escalones(daño,i, p, ruta1, Mapa1,ruta2);
             i+=7;
         }
     }
-    public int chuzos_escalones (int i,int p,String ruta1,mapa Mapa1,String ruta2){
+    public int chuzos_escalones (int daño,int i,int p,String ruta1,mapa Mapa1,String ruta2){
         if(i>=93 && i <= 190){
                 if(p<3){
-                    no_fatal c2 = new no_fatal(20,ruta1,i,55,20,30,"chuzo");
+                    no_fatal c2 = new no_fatal(daño,ruta1,i,55,20,30,"chuzo");
                     Mapa1.getMisElementos().add(c2);
                 }
                 if(p>=3 && p<10){
-                    no_fatal c2 = new no_fatal(20,ruta1,i,90,20,30,"chuzo");
+                    no_fatal c2 = new no_fatal(daño,ruta1,i,90,20,30,"chuzo");
                     Mapa1.getMisElementos().add(c2);
                 }
                 if(p>=10 && p<13){
-                    no_fatal c2 = new no_fatal(20,ruta1,i+5,55,20,30,"chuzo");
+                    no_fatal c2 = new no_fatal(daño,ruta1,i+5,55,20,30,"chuzo");
                     Mapa1.getMisElementos().add(c2);
             }
-                no_fatal c2 = new no_fatal(20,ruta1,i,165,18,30,"chuzo");
+                no_fatal c2 = new no_fatal(daño,ruta1,i,165,18,30,"chuzo");
                 Mapa1.getMisElementos().add(c2);
                 
-                no_fatal c1 = new no_fatal(20,ruta2,i,113,18,30,"chuzo");
+                no_fatal c1 = new no_fatal(daño,ruta2,i,113,18,30,"chuzo");
                     Mapa1.getMisElementos().add(c1);
                 p++;
             }
@@ -184,72 +187,72 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         Mapa1.getMisElementos().add(dosdoor);
         
     }
-    public void dibujarChuzozAAbajo1(mapa Mapa1){
+    public void dibujarChuzozAAbajo1(int daño,mapa Mapa1){
         //Abajo del todo
         int empezarX = 43;
         int empezarY = 490;
         for (int i = 0; i < 28; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
     }
-    public void dibujarChuzozAAbajo2(mapa Mapa1){
+    public void dibujarChuzozAAbajo2(int daño,mapa Mapa1){
         //Arriba del todo
         int empezarX = 43;
         int empezarY = 250;
         for (int i = 0; i < 28; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo2.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo2.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
     }
-    public void dibujarChuzozAAbajo3(mapa Mapa1){
+    public void dibujarChuzozAAbajo3(int daño,mapa Mapa1){
         //Arriba pequeños
         int empezarX = 93;
         int empezarY = 300;
         for (int i = 0; i < 3; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
     }
-    public void dibujarChuzozAAbajo4(mapa Mapa1){
+    public void dibujarChuzozAAbajo4(int daño,mapa Mapa1){
         //Arriba pequeños
         int empezarX = 170;
         int empezarY = 300;
         for (int i = 0; i < 3; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
     }
-    public void dibujarChuzozAAbajo5(mapa Mapa1){
+    public void dibujarChuzozAAbajo5(int daño,mapa Mapa1){
         //Medio Abajo
         int empezarX = 93;
         int empezarY = 408;
         for (int i = 0; i < 14; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
     }
-    public void dibujarChuzozAAbajo6(mapa Mapa1){
+    public void dibujarChuzozAAbajo6(int daño,mapa Mapa1){
         //Medio Arriba
         int empezarX = 93;
         int empezarY = 358;
         for (int i = 0; i < 14; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo2.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo2.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
     }
-    public void dibujarChuzozAAbajo7(mapa Mapa1){
+    public void dibujarChuzozAAbajo7(int daño,mapa Mapa1){
         //arriba medio pequeños
         int empezarX = 125;
         int empezarY = 335;
         for (int i = 0; i < 5; i++) {
-            no_fatal chuzo = new no_fatal(20,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
+            no_fatal chuzo = new no_fatal(daño,"src/pictures/chuzo.png",empezarX, empezarY,20 ,30 ,"Chuzo");
             Mapa1.getMisElementos().add(chuzo);
             empezarX += 7; 
         }
