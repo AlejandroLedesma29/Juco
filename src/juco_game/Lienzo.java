@@ -126,7 +126,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                  if (actual instanceof player){
                     if(!veriificarColisiones((player)actual)){
                         verificar_no_fatal_choque((player)actual);
-                        System.out.println(((player) actual).getNivel_aire());
                         if((((player) actual).getNivel_aire() == 0 )||(verificar_fatal_choque((player)actual))){
                             reset_player((player)actual);
                         }
@@ -340,12 +339,13 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         while (i<this.miMapa.getMisElementos().size() && !bandera) {
             if(this.miMapa.getMisElementos().get(i) instanceof barrier){
                 if(this.miMapa.getMisElementos().get(i).getId().equals("door_down")){
-                    bandera = true;
+                    //bandera = true;
                     this.miMapa.getMisElementos().get(i).setY(400);
+                    break;
+                }
             }
             i++;
-            } 
-        }
+        } 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
