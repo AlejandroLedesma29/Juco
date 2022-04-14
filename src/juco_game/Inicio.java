@@ -50,7 +50,8 @@ public class Inicio extends javax.swing.JFrame{
         muros_superior(Mapa1);
         //Creacion de muros segunda parte
         muros_inferior(Mapa1);
-        
+        //
+        crear_balas(Mapa1);
         //Creacion de llaves
         key llave1 = new key("src/pictures/llave.png", 490, 130, 20, 20,"llaveArriba");
         key llave2 = new key("src/pictures/llave.png", 490, 378, 20, 20,"llaveAbajo");
@@ -152,7 +153,28 @@ public class Inicio extends javax.swing.JFrame{
             }
         return p;
     }
-    
+    public void crear_balas(mapa Mapa1){
+        fatal bala1 = new fatal(false, true, false,"src/pictures/bala.png", 640, 25, 10,20 , "primera");
+        fatal bala2 = new fatal(false, true, false,"src/pictures/bala.png", 670, 25, 10,20 , "segunda");
+        fatal bala3 = new fatal(false, true, false,"src/pictures/bala.png", 700, 25, 10,20 , "tercera");
+        fatal bala4 = new fatal(false, true, false,"src/pictures/bala.png", 730, 25, 10,20 , "cuarta");
+        
+        fatal Dbala1 = new fatal(false, true, false,"src/pictures/bala.png", 640, 270, 10,20 , "primera");
+        fatal Dbala2 = new fatal(false, true, false,"src/pictures/bala.png", 670, 270, 10,20 , "segunda");
+        fatal Dbala3 = new fatal(false, true, false,"src/pictures/bala.png", 700, 270, 10,20 , "tercera");
+        fatal Dbala4 = new fatal(false, true, false,"src/pictures/bala.png", 730, 270, 10,20 , "cuarta");
+        
+        Mapa1.getMisElementos().add(bala1);
+        Mapa1.getMisElementos().add(bala2);
+        Mapa1.getMisElementos().add(bala3);
+        Mapa1.getMisElementos().add(bala4);
+        
+        Mapa1.getMisElementos().add(Dbala1);
+        Mapa1.getMisElementos().add(Dbala2);
+        Mapa1.getMisElementos().add(Dbala3);
+        Mapa1.getMisElementos().add(Dbala4);
+        
+    }
     public void bordes_mapa(mapa Mapa1){
         barrier top = new barrier(Color.BLACK,0,0,800,20,"top");
         barrier right = new barrier(Color.BLACK,785,0,15,500,"rigth");
@@ -186,6 +208,11 @@ public class Inicio extends javax.swing.JFrame{
         barrier ftop  = new barrier(Color.BLACK,600,0,30,205,"rigth-top");
         barrier door = new barrier(Color.BLACK,610,205,10,45,"door_up");
         
+        barrier gun1 = new barrier(Color.GRAY, 638, 10, 15,25 ,"gun_up");
+        barrier gun2 = new barrier(Color.GRAY, 668, 10, 15,25 ,"gun_up");
+        barrier gun3 = new barrier(Color.GRAY, 698, 10, 15,25 ,"gun_up");
+        barrier gun4 = new barrier(Color.GRAY, 728, 10, 15,25 ,"gun_up");
+        
         Mapa1.getMisElementos().add(uno);
         Mapa1.getMisElementos().add(dos);
         Mapa1.getMisElementos().add(ultimo);
@@ -199,6 +226,10 @@ public class Inicio extends javax.swing.JFrame{
         Mapa1.getMisElementos().add(mmid);
         Mapa1.getMisElementos().add(ftop);
         Mapa1.getMisElementos().add(door);
+        Mapa1.getMisElementos().add(gun1);
+        Mapa1.getMisElementos().add(gun2);
+        Mapa1.getMisElementos().add(gun3);
+        Mapa1.getMisElementos().add(gun4);
     }
     public void muros_inferior(mapa Mapa1){
         
@@ -221,6 +252,11 @@ public class Inicio extends javax.swing.JFrame{
         barrier dosftop  = new barrier(Color.BLACK,600,250,30,205,"rigth-top");
         barrier dosdoor = new barrier(Color.BLACK,610,455,10,45,"door_down");
         
+        barrier gun1 = new barrier(Color.GRAY, 638, 258, 15,25 ,"gun_down");
+        barrier gun2 = new barrier(Color.GRAY, 668, 258, 15,25 ,"gun_down");
+        barrier gun3 = new barrier(Color.GRAY, 698, 258, 15,25 ,"gun_down");
+        barrier gun4 = new barrier(Color.GRAY, 728, 258, 15,25 ,"gun_down");
+        
         Mapa1.getMisElementos().add(dosuno);
         Mapa1.getMisElementos().add(dosdos);
         Mapa1.getMisElementos().add(dosultimo);
@@ -234,7 +270,10 @@ public class Inicio extends javax.swing.JFrame{
         Mapa1.getMisElementos().add(dosmmid);
         Mapa1.getMisElementos().add(dosftop);
         Mapa1.getMisElementos().add(dosdoor);
-        
+        Mapa1.getMisElementos().add(gun1);
+        Mapa1.getMisElementos().add(gun2);
+        Mapa1.getMisElementos().add(gun3);
+        Mapa1.getMisElementos().add(gun4);
     }
     public void dibujarChuzozAAbajo1(int daño,mapa Mapa1){
         //Abajo del todo

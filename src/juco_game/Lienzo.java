@@ -137,7 +137,14 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         }
                     } 
                     if (actual instanceof fatal){
-                        if (((fatal)actual).getY()<250){
+                        if (((fatal)actual).getX()>600){
+                            if (((fatal)actual).getY()<265){
+                                mover_balas_arriba((fatal)actual);
+                            } else {
+                                mover_balas_abajo((fatal)actual);
+                            }
+                        }else{
+                            if (((fatal)actual).getY()<250){
                             if(((fatal)actual).isHorizontal()){
                                 mover_horizontal(((fatal)actual));
                             }else{
@@ -152,6 +159,8 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                                 validar_fronteras_verticales((fatal)actual);
                             }
                         }
+                        }
+                        
                     }
                 actual.actualizarArea();
             }
@@ -159,7 +168,61 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             repaint();
         }
     }
-        
+     
+    public void mover_balas_arriba(fatal actual){
+        if (actual.getId().equals("primera")){
+            if (actual.getY()<=230){
+                actual.setY(actual.getY()+2);
+            } else if (actual.getY()>230){
+                actual.setY(25);
+            }
+        } else if (actual.getId().equals("segunda")){
+            if (actual.getY()<=230){
+                actual.setY(actual.getY()+4);
+            } else if (actual.getY()>230){
+                actual.setY(25);
+            }
+        } else if (actual.getId().equals("tercera")){
+            if (actual.getY()<=230){
+                actual.setY(actual.getY()+2);
+            } else if (actual.getY()>230){
+                actual.setY(25);
+            }
+        } else {
+            if (actual.getY()<=230){
+                actual.setY(actual.getY()+3);
+            } else if (actual.getY()>230){
+                actual.setY(25);
+            }
+        }
+    }
+    public void mover_balas_abajo(fatal actual){
+        if (actual.getId().equals("primera")){
+            if (actual.getY()<=475){
+                actual.setY(actual.getY()+2);
+            } else if (actual.getY()>475){
+                actual.setY(270);
+            }
+        } else if (actual.getId().equals("segunda")){
+            if (actual.getY()<=475){
+                actual.setY(actual.getY()+4);
+            } else if (actual.getY()>475){
+                actual.setY(270);
+            }
+        } else if (actual.getId().equals("tercera")){
+            if (actual.getY()<=475){
+                actual.setY(actual.getY()+2);
+            } else if (actual.getY()>475){
+                actual.setY(270);
+            }
+        } else {
+            if (actual.getY()<=475){
+                actual.setY(actual.getY()+3);
+            } else if (actual.getY()>475){
+                actual.setY(270);
+            }
+        }
+    }
     public void moverX(fatal actual){
         if (actual.isHorizontal()) {
             actual.setX(actual.getX()+1);
