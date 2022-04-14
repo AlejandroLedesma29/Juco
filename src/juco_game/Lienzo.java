@@ -9,6 +9,8 @@ import Elements.Images;
 import Elements.barrier;
 import Elements.element;
 import Elements.fatal;
+import Elements.healing;
+import Elements.key;
 import Elements.mapa;
 import Elements.no_fatal;
 import Elements.player;
@@ -125,9 +127,14 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     if(!veriificarColisiones((player)actual)){
                         verificar_no_fatal_choque((player)actual);
                         System.out.println(((player) actual).getNivel_aire());
-                        if(((player) actual).getNivel_aire() == 0){
+                        if((((player) actual).getNivel_aire() == 0 )||(verificar_fatal_choque((player)actual))){
                             reset_player((player)actual);
                         }
+                        if(verificar_healing_choque((player)actual)){
+                            int aire = ((player)actual).getNivel_aire();
+                            ((player)actual).setNivel_aire(aire+100);
+                        }
+                        verificar_key_choque((player)actual);
                         }
                     } 
                     if (actual instanceof fatal){
@@ -225,7 +232,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-public boolean veriificarColisiones(player jugador){
+    public boolean veriificarColisiones(player jugador){
         boolean respuesta = false;
         //System.out.println(jugador.getArea());
         int i=0;
@@ -241,8 +248,8 @@ public boolean veriificarColisiones(player jugador){
         }
         return respuesta;
     }
-public boolean verificar_no_fatal_choque(player jugador){
-    boolean respuesta = false;
+    public boolean verificar_no_fatal_choque(player jugador){
+        boolean respuesta = false;
         //System.out.println(jugador.getArea());
         int i=0;
         while (i<this.miMapa.getMisElementos().size() && !respuesta) {
@@ -256,8 +263,90 @@ public boolean verificar_no_fatal_choque(player jugador){
             i++;
         }
         return respuesta;
+}   
+    public boolean verificar_fatal_choque(player jugador){
+        boolean respuesta = false;
+        //System.out.println(jugador.getArea());
+        int i=0;
+        while (i<this.miMapa.getMisElementos().size() && !respuesta) {
+            if(this.miMapa.getMisElementos().get(i) instanceof fatal){
+                if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
+                    respuesta = true;
+                }
+            }
+            i++;
+        }
+        return respuesta;
 }
-
+    public boolean verificar_healing_choque(player jugador){
+        boolean respuesta = false;
+        //System.out.println(jugador.getArea());
+        int i=0;
+        int salud =-1;
+        while (i<this.miMapa.getMisElementos().size() && !respuesta) {
+            if(this.miMapa.getMisElementos().get(i) instanceof healing){
+                if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
+                    respuesta = true;
+                    salud = i;
+                }
+            }
+            i++;
+        }
+        if (salud != -1){
+            this.miMapa.getMisElementos().remove(salud);
+        }
+        return respuesta;
+    }
+    public void verificar_key_choque(player jugador){
+        boolean respuesta = false;
+        int i=0;
+        int keyy =-1;
+        while (i<this.miMapa.getMisElementos().size() && !respuesta) {
+            if(this.miMapa.getMisElementos().get(i) instanceof key){
+                if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
+                    respuesta = true;
+                    keyy = i;
+                    if (((key)this.miMapa.getMisElementos().get(i)).getY()<200){
+                        borrarBarreraArriba();
+                    } else if (((key)this.miMapa.getMisElementos().get(i)).getY()>200) {
+                        borrarBarreraAbajo();
+                    }
+                }
+            }
+            i++;
+        }
+        if (keyy != -1){
+            this.miMapa.getMisElementos().remove(keyy);
+        }
+    }
+    
+    public void borrarBarreraArriba(){
+       boolean bandera = false;
+        int i=0;
+        while (i<this.miMapa.getMisElementos().size() && !bandera) {
+            if(this.miMapa.getMisElementos().get(i) instanceof barrier){
+                if(this.miMapa.getMisElementos().get(i).getId().equals("door_up")){
+                    bandera = true;
+                    this.miMapa.getMisElementos().get(i).setY(150);
+                }
+            }
+            i++;
+        } 
+    }
+    
+    public void borrarBarreraAbajo(){
+       boolean bandera = false;
+        int i=0;
+        while (i<this.miMapa.getMisElementos().size() && !bandera) {
+            if(this.miMapa.getMisElementos().get(i) instanceof barrier){
+                if(this.miMapa.getMisElementos().get(i).getId().equals("door_down")){
+                    bandera = true;
+                    this.miMapa.getMisElementos().get(i).setY(400);
+            }
+            i++;
+            } 
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

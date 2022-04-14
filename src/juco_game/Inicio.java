@@ -13,6 +13,7 @@ import Elements.element;
 import Elements.fatal;
 import Elements.healing;
 import Elements.no_fatal;
+import Elements.key;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -50,27 +51,21 @@ public class Inicio extends javax.swing.JFrame{
         //Creacion de muros segunda parte
         muros_inferior(Mapa1);
         
+        //Creacion de llaves
+        key llave1 = new key("src/pictures/llave.png", 450, 140, 20, 20,"llaveArriba");
+        key llave2 = new key("src/pictures/llave.png", 50, 388, 20, 20,"llaveAbajo");
+        Mapa1.getMisElementos().add(llave1);
+        Mapa1.getMisElementos().add(llave2);
+        
         //Creacion fatales bajos
         crearFatalesAbajo(Mapa1);
-        
+        crearFatalesAribba(Mapa1);
         //crear puntos de salud
-        healing curaBaja = new healing(30, "src/pictures/cura.png", 138, 315, 20, 20,"cura_abajo");
-        healing curaalta = new healing(30, "src/pictures/cura.png", 138, 70, 20, 20,"cura_arriba");
+        healing curaBaja = new healing(100, "src/pictures/cura.png", 138, 315, 20, 20,"cura_abajo");
+        healing curaalta = new healing(100, "src/pictures/cura.png", 138, 70, 20, 20,"cura_arriba");
         Mapa1.getMisElementos().add(curaBaja);
         Mapa1.getMisElementos().add(curaalta);
-        //Creacion fatales
-        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", 280,25,15,15,"bomba");
-        fatal f2 = new  fatal(true,false, false,"src/pictures/bomba.png", 420,45,15,15,"bomba");
-        fatal f3 = new  fatal(false,true, true,"src/pictures/bomba.png", 280,65,15,15,"bomba");
-        fatal f4 = new  fatal(false,true, false,"src/pictures/bomba.png", 300,190,15,15,"bomba");
-        fatal f5 = new  fatal(true,false, true,"src/pictures/bomba.png", 280,210,15,15,"bomba");
-        fatal f6 = new  fatal(true,false, false,"src/pictures/bomba.png", 420,230,15,15,"bomba");
-        Mapa1.getMisElementos().add(f1);
-        Mapa1.getMisElementos().add(f2);
-        Mapa1.getMisElementos().add(f3);
-        Mapa1.getMisElementos().add(f4);
-        Mapa1.getMisElementos().add(f5);
-        Mapa1.getMisElementos().add(f6);
+        
         
         //Creacion de jugadores
         this.newPlayer = new player(200,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
@@ -87,7 +82,21 @@ public class Inicio extends javax.swing.JFrame{
         proceso.start();
         
     }
-    
+    public void crearFatalesAribba(mapa Mapa1){
+        //Creacion fatales
+        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", 280,25,15,15,"bomba");
+        fatal f2 = new  fatal(true,false, false,"src/pictures/bomba.png", 420,45,15,15,"bomba");
+        fatal f3 = new  fatal(false,true, true,"src/pictures/bomba.png", 280,65,15,15,"bomba");
+        fatal f4 = new  fatal(false,true, false,"src/pictures/bomba.png", 300,190,15,15,"bomba");
+        fatal f5 = new  fatal(true,false, true,"src/pictures/bomba.png", 280,210,15,15,"bomba");
+        fatal f6 = new  fatal(true,false, false,"src/pictures/bomba.png", 420,230,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        Mapa1.getMisElementos().add(f3);
+        Mapa1.getMisElementos().add(f4);
+        Mapa1.getMisElementos().add(f5);
+        Mapa1.getMisElementos().add(f6);
+    }
     public void crearFatalesAbajo(mapa Mapa1){
           //Creacion fatales
         fatal f1 = new  fatal(true,false,false, "src/pictures/bolaChuzos.png",280,268,15,15,"horizontal");
@@ -175,7 +184,7 @@ public class Inicio extends javax.swing.JFrame{
         barrier mmid  = new barrier(Color.BLACK,320,65,80,140,"mid");
         
         barrier ftop  = new barrier(Color.BLACK,600,0,30,205,"rigth-top");
-        barrier door = new barrier(Color.BLACK,610,205,10,45,"rigth-down");
+        barrier door = new barrier(Color.BLACK,610,205,10,45,"door_up");
         
         Mapa1.getMisElementos().add(uno);
         Mapa1.getMisElementos().add(dos);
@@ -210,7 +219,7 @@ public class Inicio extends javax.swing.JFrame{
         barrier dosmmid  = new barrier(Color.BLACK,320,310,80,140,"mid");
         
         barrier dosftop  = new barrier(Color.BLACK,600,250,30,205,"rigth-top");
-        barrier dosdoor = new barrier(Color.BLACK,610,455,10,45,"rigth-down");
+        barrier dosdoor = new barrier(Color.BLACK,610,455,10,45,"door_down");
         
         Mapa1.getMisElementos().add(dosuno);
         Mapa1.getMisElementos().add(dosdos);
