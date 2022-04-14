@@ -52,8 +52,8 @@ public class Inicio extends javax.swing.JFrame{
         muros_inferior(Mapa1);
         
         //Creacion de llaves
-        key llave1 = new key("src/pictures/llave.png", 450, 140, 20, 20,"llaveArriba");
-        key llave2 = new key("src/pictures/llave.png", 50, 388, 20, 20,"llaveAbajo");
+        key llave1 = new key("src/pictures/llave.png", 490, 130, 20, 20,"llaveArriba");
+        key llave2 = new key("src/pictures/llave.png", 490, 378, 20, 20,"llaveAbajo");
         Mapa1.getMisElementos().add(llave1);
         Mapa1.getMisElementos().add(llave2);
         
