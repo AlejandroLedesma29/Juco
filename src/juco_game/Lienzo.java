@@ -124,6 +124,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             //Mover todas las figuras
             for(element actual: this.miMapa.getMisElementos()){
                  if (actual instanceof player){
+                     System.out.println(((player)actual).getNivel_aire());
                     if(!veriificarColisiones((player)actual)){
                         verificar_no_fatal_choque((player)actual);
                         if((((player) actual).getNivel_aire() == 0 )||(verificar_fatal_choque((player)actual))){
@@ -185,19 +186,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             }
         } else if (actual.getId().equals("segunda")){
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+4);
+                actual.setY(actual.getY()+3);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
         } else if (actual.getId().equals("tercera")){
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+2);
+                actual.setY(actual.getY()+1);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
         } else {
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+3);
+                actual.setY(actual.getY()+2);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
@@ -212,19 +213,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             }
         } else if (actual.getId().equals("segunda")){
             if (actual.getY()<=475){
-                actual.setY(actual.getY()+4);
+                actual.setY(actual.getY()+3);
             } else if (actual.getY()>475){
                 actual.setY(270);
             }
         } else if (actual.getId().equals("tercera")){
             if (actual.getY()<=475){
-                actual.setY(actual.getY()+2);
+                actual.setY(actual.getY()+1);
             } else if (actual.getY()>475){
                 actual.setY(270);
             }
         } else {
             if (actual.getY()<=475){
-                actual.setY(actual.getY()+3);
+                actual.setY(actual.getY()+2);
             } else if (actual.getY()>475){
                 actual.setY(270);
             }
@@ -351,7 +352,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 //System.out.println(this.miMapa.getMisElementos().get(i).getArea());
                 if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
                 respuesta = true;
-                System.out.println("choque ");
+                    reset_player(jugador);
                 }
             }
             i++;

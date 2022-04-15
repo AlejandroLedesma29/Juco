@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author L E D E S M A
+ * @author L E D E S M A 
  */
 public class key extends Images{
 

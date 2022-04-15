@@ -101,8 +101,7 @@ public class Inicio extends javax.swing.JFrame{
         Mapa1.getMisElementos().add(f1);
         Mapa1.getMisElementos().add(f2);
         
-        fatal f3 = new  fatal(true,false, true,"src/pictures/bomba.png", 545, 120,15,15,"bomba");
-        Mapa1.getMisElementos().add(f3);
+       
     }
     public void proteccion_llaves_abajo(mapa Mapa1){
         for(int i = 445;i < 545 ;i += 25){
@@ -115,9 +114,7 @@ public class Inicio extends javax.swing.JFrame{
         fatal f2 = new  fatal(true,false, true,"src/pictures/bomba.png", 445, 393,15,15,"bomba");
         Mapa1.getMisElementos().add(f1);
         Mapa1.getMisElementos().add(f2);
-        
-        fatal f3 = new  fatal(true,false, true,"src/pictures/bomba.png", 545, 368,15,15,"bomba");
-        Mapa1.getMisElementos().add(f3);
+       
     }
     public void crearFatalesAribba(mapa Mapa1){
         //Creacion fatales
