@@ -53,14 +53,19 @@ public class Inicio extends javax.swing.JFrame{
         //
         crear_balas(Mapa1);
         //Creacion de llaves
-        key llave1 = new key("src/pictures/llave.png", 490, 130, 20, 20,"llaveArriba");
-        key llave2 = new key("src/pictures/llave.png", 490, 378, 20, 20,"llaveAbajo");
+        key llave1 = new key("src/pictures/llave.png", 495, 130, 20, 20,"llaveArriba");
+        key llave2 = new key("src/pictures/llave.png", 495, 378, 20, 20,"llaveAbajo");
         Mapa1.getMisElementos().add(llave1);
         Mapa1.getMisElementos().add(llave2);
         
         //Creacion fatales bajos
         crearFatalesAbajo(Mapa1);
         crearFatalesAribba(Mapa1);
+        
+        //Creacion proteccion llaves
+        proteccion_llaves_arriba(Mapa1);
+        proteccion_llaves_abajo(Mapa1);
+        
         //crear puntos de salud
         healing curaBaja = new healing(100, "src/pictures/cura.png", 138, 315, 20, 20,"cura_abajo");
         healing curaalta = new healing(100, "src/pictures/cura.png", 138, 70, 20, 20,"cura_arriba");
@@ -82,6 +87,37 @@ public class Inicio extends javax.swing.JFrame{
         this.lienzo1.setActivo(true);
         proceso.start();
         
+    }
+    
+    public void proteccion_llaves_arriba(mapa Mapa1){
+        for(int i = 445;i < 545 ;i += 25){
+        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", i, 95,15,15,"bomba");
+        fatal f2 = new  fatal(true,false, true,"src/pictures/bomba.png", i, 170,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        }
+        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", 445, 120,15,15,"bomba");
+        fatal f2 = new  fatal(true,false, true,"src/pictures/bomba.png", 445, 145,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        
+        fatal f3 = new  fatal(true,false, true,"src/pictures/bomba.png", 545, 120,15,15,"bomba");
+        Mapa1.getMisElementos().add(f3);
+    }
+    public void proteccion_llaves_abajo(mapa Mapa1){
+        for(int i = 445;i < 545 ;i += 25){
+        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", i, 343,15,15,"bomba");
+        fatal f2 = new  fatal(true,false, true,"src/pictures/bomba.png", i, 418,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        }
+        fatal f1 = new  fatal(true,false, true,"src/pictures/bomba.png", 445, 368,15,15,"bomba");
+        fatal f2 = new  fatal(true,false, true,"src/pictures/bomba.png", 445, 393,15,15,"bomba");
+        Mapa1.getMisElementos().add(f1);
+        Mapa1.getMisElementos().add(f2);
+        
+        fatal f3 = new  fatal(true,false, true,"src/pictures/bomba.png", 545, 368,15,15,"bomba");
+        Mapa1.getMisElementos().add(f3);
     }
     public void crearFatalesAribba(mapa Mapa1){
         //Creacion fatales

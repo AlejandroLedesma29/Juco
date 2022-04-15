@@ -137,6 +137,14 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         }
                     } 
                     if (actual instanceof fatal){
+                        if(((fatal)actual).getX()>425 && ((fatal)actual).getX()<600){
+                            if(((fatal)actual).getY()<250){
+                                 mover_proteccion_llave_arriba((fatal)actual);
+                            }else{
+                                mover_proteccion_llave_abajo((fatal)actual);
+                            }
+                            
+                        }else{
                         if (((fatal)actual).getX()>600){
                             if (((fatal)actual).getY()<265){
                                 mover_balas_arriba((fatal)actual);
@@ -160,7 +168,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                             }
                         }
                         }
-                        
+                        }
                     }
                 actual.actualizarArea();
             }
@@ -168,7 +176,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             repaint();
         }
     }
-     
     public void mover_balas_arriba(fatal actual){
         if (actual.getId().equals("primera")){
             if (actual.getY()<=230){
@@ -223,6 +230,47 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             }
         }
     }
+    public void mover_proteccion_llave_arriba(fatal actual){
+       if(actual.getX() >= 445 && actual.getY() <= 95){
+           actual.setHorizontal(true);
+           moverX(actual);
+       }
+       
+        if(actual.getX() > 445 && actual.getY() == 170){
+           actual.setHorizontal(false);
+           moverX(actual);
+       }
+        
+        if(actual.getX() >= 545 && actual.getY() >= 95){
+           actual.setVertical(true);
+           moverY(actual);
+       }
+        if(actual.getX() == 445 && actual.getY() <= 170){
+           actual.setVertical(false);
+           moverY(actual);
+       }
+    }
+    public void mover_proteccion_llave_abajo(fatal actual){
+       if(actual.getX() >= 445 && actual.getY() <= 343){
+           actual.setHorizontal(true);
+           moverX(actual);
+       }
+       
+        if(actual.getX() > 445 && actual.getY() == 418){
+           actual.setHorizontal(false);
+           moverX(actual);
+       }
+        
+        if(actual.getX() >= 545 && actual.getY() >= 343){
+           actual.setVertical(true);
+           moverY(actual);
+       }
+        if(actual.getX() == 445 && actual.getY() <= 418){
+           actual.setVertical(false);
+           moverY(actual);
+       }
+    }
+
     public void moverX(fatal actual){
         if (actual.isHorizontal()) {
             actual.setX(actual.getX()+1);
