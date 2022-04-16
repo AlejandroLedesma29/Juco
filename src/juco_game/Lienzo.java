@@ -19,9 +19,12 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
 /**
@@ -378,6 +381,18 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         }
         return respuesta;
     }
+    public void sound_daño (String Ruta){
+        try{
+        Clip  sonido;
+        sonido = AudioSystem.getClip();
+        sonido.open(AudioSystem.getAudioInputStream(new File(Ruta)));
+        sonido.start();
+        //sonido.close();
+        } catch(Exception e){
+            System.out.println("Error sonido");
+        }
+                
+    }
     public boolean verificar_no_fatal_choque(player jugador){
         boolean respuesta = false;
         //System.out.println(jugador.getArea());
@@ -388,6 +403,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 respuesta = true;
                 int daño = ((no_fatal)this.miMapa.getMisElementos().get(i)).getCantidad_daño();
                 jugador.setNivel_aire(jugador.getNivel_aire()-daño);
+                sound_daño("src/sounds/daño.wav");
                 }
             }
             i++;
