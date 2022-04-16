@@ -74,10 +74,10 @@ public class Inicio extends javax.swing.JFrame{
         
         
         //Creacion de jugadores
-        this.newPlayer = new player(200,"src/pictures/bola1.png",25,140,18,18,"globo_rojo");
+        this.newPlayer = new player(200,"src/pictures/bola1.png",25,140,18,18,"Jugador 1");
         Mapa1.getMisElementos().add(this.newPlayer);
         
-        this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"globo_amarillo");
+        this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"Jugador 2");
         Mapa1.getMisElementos().add(this.newPlayer2);
         
       
@@ -241,11 +241,14 @@ public class Inicio extends javax.swing.JFrame{
         barrier ftop  = new barrier(Color.BLACK,600,0,30,205,"rigth-top");
         barrier door = new barrier(Color.BLACK,610,205,10,45,"door_up");
         
+        barrier meta = new barrier (Color.GREEN, 750,100,40,50,"meta");
+        
         barrier gun1 = new barrier(Color.GRAY, 638, 10, 15,25 ,"gun_up");
         barrier gun2 = new barrier(Color.GRAY, 668, 10, 15,25 ,"gun_up");
         barrier gun3 = new barrier(Color.GRAY, 698, 10, 15,25 ,"gun_up");
         barrier gun4 = new barrier(Color.GRAY, 728, 10, 15,25 ,"gun_up");
         
+        Mapa1.getMisElementos().add(meta);
         Mapa1.getMisElementos().add(uno);
         Mapa1.getMisElementos().add(dos);
         Mapa1.getMisElementos().add(ultimo);
@@ -285,11 +288,14 @@ public class Inicio extends javax.swing.JFrame{
         barrier dosftop  = new barrier(Color.BLACK,600,250,30,205,"rigth-top");
         barrier dosdoor = new barrier(Color.BLACK,610,455,10,45,"door_down");
         
+        barrier meta = new barrier (Color.GREEN, 750,350,40,50,"meta");
+        
         barrier gun1 = new barrier(Color.GRAY, 638, 258, 15,25 ,"gun_down");
         barrier gun2 = new barrier(Color.GRAY, 668, 258, 15,25 ,"gun_down");
         barrier gun3 = new barrier(Color.GRAY, 698, 258, 15,25 ,"gun_down");
         barrier gun4 = new barrier(Color.GRAY, 728, 258, 15,25 ,"gun_down");
         
+        Mapa1.getMisElementos().add(meta);
         Mapa1.getMisElementos().add(dosuno);
         Mapa1.getMisElementos().add(dosdos);
         Mapa1.getMisElementos().add(dosultimo);

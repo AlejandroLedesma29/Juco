@@ -136,6 +136,10 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                         }
                         verificar_key_choque((player)actual);
                         }
+                        if (verificar_meta((player)actual)){
+                            this.activo = false;
+                            JOptionPane. showMessageDialog(this, "EL GANADOR ES: "+((player)actual).getId());
+                        }
                     } 
                     if (actual instanceof fatal){
                         if(((fatal)actual).getX()>425 && ((fatal)actual).getX()<600){
@@ -180,52 +184,67 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     public void mover_balas_arriba(fatal actual){
         if (actual.getId().equals("primera")){
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+2);
+                actual.setY(actual.getY()+1);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
         } else if (actual.getId().equals("segunda")){
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+3);
+                actual.setY(actual.getY()+2);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
         } else if (actual.getId().equals("tercera")){
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+1);
+                actual.setY(actual.getY()+3);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
         } else {
             if (actual.getY()<=230){
-                actual.setY(actual.getY()+2);
+                actual.setY(actual.getY()+1);
             } else if (actual.getY()>230){
                 actual.setY(25);
             }
         }
     }
+    public boolean verificar_meta(player jugador){
+        boolean respuesta = false;
+        int i=0;
+        while (i<this.miMapa.getMisElementos().size() && !respuesta) {
+            if(this.miMapa.getMisElementos().get(i) instanceof barrier){
+                //System.out.println(this.miMapa.getMisElementos().get(i).getArea());
+                if((jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea()) &&(this.miMapa.getMisElementos().get(i).getId().equals("meta")) )){
+                respuesta = true;
+                    
+                }
+            }
+            i++;
+        }
+        return respuesta;
+    }
     public void mover_balas_abajo(fatal actual){
         if (actual.getId().equals("primera")){
-            if (actual.getY()<=475){
-                actual.setY(actual.getY()+2);
-            } else if (actual.getY()>475){
-                actual.setY(270);
-            }
-        } else if (actual.getId().equals("segunda")){
-            if (actual.getY()<=475){
-                actual.setY(actual.getY()+3);
-            } else if (actual.getY()>475){
-                actual.setY(270);
-            }
-        } else if (actual.getId().equals("tercera")){
             if (actual.getY()<=475){
                 actual.setY(actual.getY()+1);
             } else if (actual.getY()>475){
                 actual.setY(270);
             }
-        } else {
+        } else if (actual.getId().equals("segunda")){
             if (actual.getY()<=475){
                 actual.setY(actual.getY()+2);
+            } else if (actual.getY()>475){
+                actual.setY(270);
+            }
+        } else if (actual.getId().equals("tercera")){
+            if (actual.getY()<=475){
+                actual.setY(actual.getY()+3);
+            } else if (actual.getY()>475){
+                actual.setY(270);
+            }
+        } else {
+            if (actual.getY()<=475){
+                actual.setY(actual.getY()+1);
             } else if (actual.getY()>475){
                 actual.setY(270);
             }
@@ -350,7 +369,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         while (i<this.miMapa.getMisElementos().size() && !respuesta) {
             if(this.miMapa.getMisElementos().get(i) instanceof barrier){
                 //System.out.println(this.miMapa.getMisElementos().get(i).getArea());
-                if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
+                if((jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea()) &&(!this.miMapa.getMisElementos().get(i).getId().equals("meta")) )){
                 respuesta = true;
                     reset_player(jugador);
                 }
