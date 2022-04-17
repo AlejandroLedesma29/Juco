@@ -47,7 +47,6 @@ public class Inicio_interfaz extends javax.swing.JFrame {
         back_ground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         Cancelarbtn.setBackground(new java.awt.Color(255, 51, 51));
