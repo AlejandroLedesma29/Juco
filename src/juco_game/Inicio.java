@@ -34,6 +34,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
      */
     public Inicio() {
         initComponents();
+        kyboardfunction();
         
         mapa Mapa1 = new mapa("001");
         int daño = 10;
@@ -88,7 +89,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
         proceso = new Thread(lienzo1);
         this.lienzo1.setActivo(true);
         this.lienzo1.sound("src/sounds/song_game.wav");
-        Empezarbtn.setEnabled(false);
+        //Empezarbtn.setEnabled(false);
         proceso.start();
         
     }
@@ -397,8 +398,9 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     private void initComponents() {
 
         lienzo1 = new juco_game.Lienzo();
-        Pausabtn = new javax.swing.JButton();
-        Empezarbtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        pausebtn = new javax.swing.JButton();
+        startbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -423,39 +425,60 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
             }
         });
 
-        Pausabtn.setText("Pausa");
-        Pausabtn.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        pausebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/pause.png"))); // NOI18N
+        pausebtn.setContentAreaFilled(false);
+        pausebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PausabtnActionPerformed(evt);
+                pausebtnActionPerformed(evt);
             }
         });
 
-        Empezarbtn.setText("Empezar");
-        Empezarbtn.addActionListener(new java.awt.event.ActionListener() {
+        startbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/start.png"))); // NOI18N
+        startbtn.setContentAreaFilled(false);
+        startbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmpezarbtnActionPerformed(evt);
+                startbtnActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pausebtn)
+                    .addComponent(startbtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pausebtn)
+                .addGap(18, 18, 18)
+                .addComponent(startbtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
         lienzo1.setLayout(lienzo1Layout);
         lienzo1Layout.setHorizontalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lienzo1Layout.createSequentialGroup()
-                .addGap(828, 828, 828)
-                .addGroup(lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Pausabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Empezarbtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lienzo1Layout.createSequentialGroup()
+                .addContainerGap(819, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         lienzo1Layout.setVerticalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lienzo1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(Pausabtn)
-                .addGap(31, 31, 31)
-                .addComponent(Empezarbtn)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addGap(180, 180, 180)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -479,6 +502,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         //this.setFocusable(true);
+        kyboardfunction();
         if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
             this.newPlayer.setY(this.newPlayer.getY()-5);
         }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
@@ -501,21 +525,6 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
            this.newPlayer2.setX(this.newPlayer2.getX()+5);
         } 
     }//GEN-LAST:event_formKeyPressed
-
-    private void PausabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PausabtnActionPerformed
-        // TODO add your handling code here:
-        Pausabtn.setEnabled(false);
-        Empezarbtn.setEnabled(true);
-        this.lienzo1.detener();
-        JOptionPane.showMessageDialog(null,"Pausa");
-    }//GEN-LAST:event_PausabtnActionPerformed
-
-    private void EmpezarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpezarbtnActionPerformed
-        // TODO add your handling code here:
-        Empezarbtn.setEnabled(false);
-        Pausabtn.setEnabled(true);
-        this.lienzo1.start();
-    }//GEN-LAST:event_EmpezarbtnActionPerformed
 
     private void lienzo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lienzo1KeyTyped
         // TODO add your handling code here:
@@ -549,7 +558,24 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     private void lienzo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzo1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lienzo1MouseClicked
-    
+
+    private void pausebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausebtnActionPerformed
+        // TODO add your handling code here:
+        kyboardfunction();
+        this.lienzo1.detener();
+        JOptionPane.showMessageDialog(null,"Pausa");
+    }//GEN-LAST:event_pausebtnActionPerformed
+
+    private void startbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbtnActionPerformed
+        // TODO add your handling code here:
+        kyboardfunction();
+        this.lienzo1.start();
+    }//GEN-LAST:event_startbtnActionPerformed
+    public void kyboardfunction(){
+        this.pausebtn.setFocusable(false);
+        this.startbtn.setFocusable(false);
+        this.setFocusable(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -586,9 +612,10 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Empezarbtn;
-    private javax.swing.JButton Pausabtn;
+    private javax.swing.JPanel jPanel1;
     private juco_game.Lienzo lienzo1;
+    private javax.swing.JButton pausebtn;
+    private javax.swing.JButton startbtn;
     // End of variables declaration//GEN-END:variables
 
     @Override
