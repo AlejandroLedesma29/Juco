@@ -50,24 +50,28 @@ public class Inicio_interfaz extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         Cancelarbtn.setBackground(new java.awt.Color(255, 51, 51));
-        Cancelarbtn.setText("Cancelar");
+        Cancelarbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/cancel.png"))); // NOI18N
+        Cancelarbtn.setContentAreaFilled(false);
         Cancelarbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarbtnActionPerformed(evt);
             }
         });
         getContentPane().add(Cancelarbtn);
-        Cancelarbtn.setBounds(420, 410, 280, 70);
+        Cancelarbtn.setBounds(560, 410, 70, 70);
 
         comenzarbtn.setBackground(new java.awt.Color(51, 255, 51));
-        comenzarbtn.setText("Comenzar");
+        comenzarbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/go.png"))); // NOI18N
+        comenzarbtn.setContentAreaFilled(false);
+        comenzarbtn.setDefaultCapable(false);
+        comenzarbtn.setPreferredSize(new java.awt.Dimension(81, 32));
         comenzarbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comenzarbtnActionPerformed(evt);
             }
         });
         getContentPane().add(comenzarbtn);
-        comenzarbtn.setBounds(50, 410, 280, 70);
+        comenzarbtn.setBounds(240, 410, 64, 64);
 
         back_ground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Juco_interfaz_principal.png"))); // NOI18N
         back_ground.setText("jLabel1");
