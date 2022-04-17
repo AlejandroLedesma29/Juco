@@ -18,6 +18,11 @@ public class player extends Images implements Runnable{
     private boolean moverIzquierda = false;
     private boolean moverDerecha = false;
 
+    public player() {
+        super(null, 0, 0, 0, 0, null);
+    }
+    
+    
     public player(int nivel_aire, String ruta, int x, int y, int ancho, int alto, String id) {
         super(ruta, x, y, ancho, alto, id);
         this.nivel_aire = nivel_aire;

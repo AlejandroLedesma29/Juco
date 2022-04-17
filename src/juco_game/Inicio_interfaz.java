@@ -72,6 +72,11 @@ public class Inicio_interfaz extends javax.swing.JFrame {
 
         back_ground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Juco_interfaz_principal.png"))); // NOI18N
         back_ground.setText("jLabel1");
+        back_ground.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                back_groundKeyPressed(evt);
+            }
+        });
         getContentPane().add(back_ground);
         back_ground.setBounds(6, 6, 772, 488);
 
@@ -92,6 +97,9 @@ public class Inicio_interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_CancelarbtnActionPerformed
+
+    private void back_groundKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_back_groundKeyPressed
+    }//GEN-LAST:event_back_groundKeyPressed
 
     /**
      * @param args the command line arguments

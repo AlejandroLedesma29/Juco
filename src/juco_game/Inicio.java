@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author L E D E S M A
  */
-public class Inicio extends javax.swing.JFrame{
+public class Inicio extends javax.swing.JFrame implements KeyListener{
     player newPlayer;
     player newPlayer2;
     Thread proceso;
@@ -445,15 +445,17 @@ public class Inicio extends javax.swing.JFrame{
                 .addGap(828, 828, 828)
                 .addGroup(lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Pausabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Empezarbtn)))
+                    .addComponent(Empezarbtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         lienzo1Layout.setVerticalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lienzo1Layout.createSequentialGroup()
-                .addGap(201, 201, 201)
+                .addGap(146, 146, 146)
                 .addComponent(Pausabtn)
                 .addGap(31, 31, 31)
-                .addComponent(Empezarbtn))
+                .addComponent(Empezarbtn)
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -462,22 +464,21 @@ public class Inicio extends javax.swing.JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, 916, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        this.setFocusable(true);
+        //this.setFocusable(true);
         if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
             this.newPlayer.setY(this.newPlayer.getY()-5);
         }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
@@ -521,10 +522,28 @@ public class Inicio extends javax.swing.JFrame{
     }//GEN-LAST:event_lienzo1KeyTyped
 
     private void lienzo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lienzo1KeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyChar() == 'w'){
+        this.setFocusable(true);
+        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
             this.newPlayer.setY(this.newPlayer.getY()-5);
+        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
+           this.newPlayer.setX(this.newPlayer.getX()-5);
+        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
+           this.newPlayer.setY(this.newPlayer.getY()+5);
+        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
+           this.newPlayer.setX(this.newPlayer.getX()+5);
         }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+           this.newPlayer2.setY(this.newPlayer2.getY()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           this.newPlayer2.setX(this.newPlayer2.getX()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           this.newPlayer2.setY(this.newPlayer2.getY()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           this.newPlayer2.setX(this.newPlayer2.getX()+5);
+        } 
     }//GEN-LAST:event_lienzo1KeyPressed
 
     private void lienzo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzo1MouseClicked
@@ -571,5 +590,62 @@ public class Inicio extends javax.swing.JFrame{
     private javax.swing.JButton Pausabtn;
     private juco_game.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent evt) {
+        this.setFocusable(true);
+        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
+            this.newPlayer.setY(this.newPlayer.getY()-5);
+        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
+           this.newPlayer.setX(this.newPlayer.getX()-5);
+        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
+           this.newPlayer.setY(this.newPlayer.getY()+5);
+        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
+           this.newPlayer.setX(this.newPlayer.getX()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+           this.newPlayer2.setY(this.newPlayer2.getY()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           this.newPlayer2.setX(this.newPlayer2.getX()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           this.newPlayer2.setY(this.newPlayer2.getY()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           this.newPlayer2.setX(this.newPlayer2.getX()+5);
+        } 
+    }
+
+    @Override
+    public void keyReleased(KeyEvent evt) {
+        this.setFocusable(true);
+        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
+            this.newPlayer.setY(this.newPlayer.getY()-5);
+        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
+           this.newPlayer.setX(this.newPlayer.getX()-5);
+        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
+           this.newPlayer.setY(this.newPlayer.getY()+5);
+        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
+           this.newPlayer.setX(this.newPlayer.getX()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
+           this.newPlayer2.setY(this.newPlayer2.getY()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           this.newPlayer2.setX(this.newPlayer2.getX()-5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           this.newPlayer2.setY(this.newPlayer2.getY()+5);
+        }
+        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           this.newPlayer2.setX(this.newPlayer2.getX()+5);
+        } 
+    }
 
 }

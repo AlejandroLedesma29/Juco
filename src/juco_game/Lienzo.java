@@ -14,6 +14,7 @@ import Elements.key;
 import Elements.mapa;
 import Elements.no_fatal;
 import Elements.player;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -46,6 +47,22 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         DibujarFigura(g);
+        DibujarVida(g);
+    }
+    public void DibujarVida(Graphics g){
+        int posicion = 30;
+            for(element ActualE :this.getMiMapa().getMisElementos()){
+                if(ActualE instanceof player){
+                    String nombre = ""+((player)ActualE).getId();
+                    String vida = ""+((player)ActualE).getNivel_aire();
+                    g.setColor(Color.BLUE);
+                    g.drawString(""+nombre,830,posicion );
+                    posicion+=20;
+                    g.drawString("VIDA: "+vida,830,posicion );
+                    
+                    posicion +=300;
+                }
+        }
     }
     
     public void DibujarFigura(Graphics g){
