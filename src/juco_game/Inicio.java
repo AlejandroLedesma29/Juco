@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author L E D E S M A
  */
-public class Inicio extends javax.swing.JFrame implements KeyListener{
+public class Inicio extends javax.swing.JFrame{
     player newPlayer;
     player newPlayer2;
     Thread proceso;
@@ -487,7 +487,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, 916, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -531,28 +531,7 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     }//GEN-LAST:event_lienzo1KeyTyped
 
     private void lienzo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lienzo1KeyPressed
-        this.setFocusable(true);
-        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
-            this.newPlayer.setY(this.newPlayer.getY()-5);
-        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
-           this.newPlayer.setX(this.newPlayer.getX()-5);
-        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
-           this.newPlayer.setY(this.newPlayer.getY()+5);
-        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
-           this.newPlayer.setX(this.newPlayer.getX()+5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
-           this.newPlayer2.setY(this.newPlayer2.getY()-5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
-           this.newPlayer2.setX(this.newPlayer2.getX()-5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
-           this.newPlayer2.setY(this.newPlayer2.getY()+5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
-           this.newPlayer2.setX(this.newPlayer2.getX()+5);
-        } 
+
     }//GEN-LAST:event_lienzo1KeyPressed
 
     private void lienzo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzo1MouseClicked
@@ -618,61 +597,5 @@ public class Inicio extends javax.swing.JFrame implements KeyListener{
     private javax.swing.JButton startbtn;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent evt) {
-        this.setFocusable(true);
-        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
-            this.newPlayer.setY(this.newPlayer.getY()-5);
-        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
-           this.newPlayer.setX(this.newPlayer.getX()-5);
-        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
-           this.newPlayer.setY(this.newPlayer.getY()+5);
-        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
-           this.newPlayer.setX(this.newPlayer.getX()+5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
-           this.newPlayer2.setY(this.newPlayer2.getY()-5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
-           this.newPlayer2.setX(this.newPlayer2.getX()-5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
-           this.newPlayer2.setY(this.newPlayer2.getY()+5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
-           this.newPlayer2.setX(this.newPlayer2.getX()+5);
-        } 
-    }
-
-    @Override
-    public void keyReleased(KeyEvent evt) {
-        this.setFocusable(true);
-        if(evt.getKeyChar() == 'w' || evt.getKeyChar() == 'W'){
-            this.newPlayer.setY(this.newPlayer.getY()-5);
-        }else if(evt.getKeyChar() == 'a' || evt.getKeyChar() == 'A'){
-           this.newPlayer.setX(this.newPlayer.getX()-5);
-        }else if(evt.getKeyChar() == 's' || evt.getKeyChar() == 'S' ){
-           this.newPlayer.setY(this.newPlayer.getY()+5);
-        }else if(evt.getKeyChar() == 'd' || evt.getKeyChar() == 'D'){
-           this.newPlayer.setX(this.newPlayer.getX()+5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_UP){
-           this.newPlayer2.setY(this.newPlayer2.getY()-5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_LEFT){
-           this.newPlayer2.setX(this.newPlayer2.getX()-5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_DOWN){
-           this.newPlayer2.setY(this.newPlayer2.getY()+5);
-        }
-        if(evt.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
-           this.newPlayer2.setX(this.newPlayer2.getX()+5);
-        } 
-    }
 
 }

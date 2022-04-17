@@ -59,8 +59,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     g.drawString(""+nombre,830,posicion );
                     posicion+=20;
                     g.drawString("VIDA: "+vida,830,posicion );
-                    
-                    posicion +=300;
+                    posicion +=440;
                 }
         }
     }
@@ -444,6 +443,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             if(this.miMapa.getMisElementos().get(i) instanceof healing){
                 if(jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea())){
                     respuesta = true;
+                    sound("src/sounds/curacion.wav");
                     salud = i;
                 }
             }
