@@ -127,7 +127,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             //Mover todas las figuras
             for(element actual: this.miMapa.getMisElementos()){
                  if (actual instanceof player){
-                     System.out.println(((player)actual).getNivel_aire());
                     if(!veriificarColisiones((player)actual)){
                         verificar_no_fatal_choque((player)actual);
                         if((((player) actual).getNivel_aire() == 0 )||(verificar_fatal_choque((player)actual))){
@@ -219,7 +218,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 //System.out.println(this.miMapa.getMisElementos().get(i).getArea());
                 if((jugador.getArea().intersects(this.miMapa.getMisElementos().get(i).getArea()) &&(this.miMapa.getMisElementos().get(i).getId().equals("meta")) )){
                 respuesta = true;
-                    
+                this.activo = false;
                 }
             }
             i++;
@@ -381,21 +380,18 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         }
         return respuesta;
     }
-    public void sound_daño (String Ruta){
+    public void sound (String Ruta){
         try{
         Clip  sonido;
         sonido = AudioSystem.getClip();
         sonido.open(AudioSystem.getAudioInputStream(new File(Ruta)));
         sonido.start();
-        //sonido.close();
         } catch(Exception e){
             System.out.println("Error sonido");
-        }
-                
+        }                
     }
     public boolean verificar_no_fatal_choque(player jugador){
         boolean respuesta = false;
-        //System.out.println(jugador.getArea());
         int i=0;
         while (i<this.miMapa.getMisElementos().size() && !respuesta) {
             if(this.miMapa.getMisElementos().get(i) instanceof no_fatal){
@@ -403,7 +399,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 respuesta = true;
                 int daño = ((no_fatal)this.miMapa.getMisElementos().get(i)).getCantidad_daño();
                 jugador.setNivel_aire(jugador.getNivel_aire()-daño);
-                sound_daño("src/sounds/daño.wav");
+                sound("src/sounds/daño.wav");
                 }
             }
             i++;
@@ -412,7 +408,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 }   
     public boolean verificar_fatal_choque(player jugador){
         boolean respuesta = false;
-        //System.out.println(jugador.getArea());
         int i=0;
         while (i<this.miMapa.getMisElementos().size() && !respuesta) {
             if(this.miMapa.getMisElementos().get(i) instanceof fatal){
@@ -426,7 +421,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 }
     public boolean verificar_healing_choque(player jugador){
         boolean respuesta = false;
-        //System.out.println(jugador.getArea());
         int i=0;
         int salud =-1;
         while (i<this.miMapa.getMisElementos().size() && !respuesta) {
@@ -493,6 +487,15 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             }
             i++;
         } 
+    }
+    
+    public void start(){
+        this.activo = true;
+        new Thread(this).start();
+    }
+    
+    public void detener(){
+        this.activo = false;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

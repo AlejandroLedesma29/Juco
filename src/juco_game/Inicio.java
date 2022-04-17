@@ -15,8 +15,11 @@ import Elements.healing;
 import Elements.no_fatal;
 import Elements.key;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -25,6 +28,7 @@ import java.awt.event.KeyListener;
 public class Inicio extends javax.swing.JFrame{
     player newPlayer;
     player newPlayer2;
+    Thread proceso;
     /**
      * Creates new form Inicio
      */
@@ -80,11 +84,11 @@ public class Inicio extends javax.swing.JFrame{
         this.newPlayer2 = new player(200,"src/pictures/bola2.png",25,388,18,18,"Jugador 2");
         Mapa1.getMisElementos().add(this.newPlayer2);
         
-      
-        
         lienzo1.setMiMapa(Mapa1);
-        Thread proceso = new Thread(lienzo1);
+        proceso = new Thread(lienzo1);
         this.lienzo1.setActivo(true);
+        this.lienzo1.sound("src/sounds/song_game.wav");
+        Empezarbtn.setEnabled(false);
         proceso.start();
         
     }
@@ -393,6 +397,8 @@ public class Inicio extends javax.swing.JFrame{
     private void initComponents() {
 
         lienzo1 = new juco_game.Lienzo();
+        Pausabtn = new javax.swing.JButton();
+        Empezarbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -402,16 +408,52 @@ public class Inicio extends javax.swing.JFrame{
         });
 
         lienzo1.setBackground(new java.awt.Color(204, 204, 204));
+        lienzo1.setPreferredSize(new java.awt.Dimension(908, 600));
+        lienzo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lienzo1MouseClicked(evt);
+            }
+        });
+        lienzo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lienzo1KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lienzo1KeyTyped(evt);
+            }
+        });
+
+        Pausabtn.setText("Pausa");
+        Pausabtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PausabtnActionPerformed(evt);
+            }
+        });
+
+        Empezarbtn.setText("Empezar");
+        Empezarbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpezarbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
         lienzo1.setLayout(lienzo1Layout);
         lienzo1Layout.setHorizontalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(lienzo1Layout.createSequentialGroup()
+                .addGap(828, 828, 828)
+                .addGroup(lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Pausabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Empezarbtn)))
         );
         lienzo1Layout.setVerticalGroup(
             lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(lienzo1Layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(Pausabtn)
+                .addGap(31, 31, 31)
+                .addComponent(Empezarbtn))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -420,14 +462,14 @@ public class Inicio extends javax.swing.JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -458,6 +500,36 @@ public class Inicio extends javax.swing.JFrame{
            this.newPlayer2.setX(this.newPlayer2.getX()+5);
         } 
     }//GEN-LAST:event_formKeyPressed
+
+    private void PausabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PausabtnActionPerformed
+        // TODO add your handling code here:
+        Pausabtn.setEnabled(false);
+        Empezarbtn.setEnabled(true);
+        this.lienzo1.detener();
+        JOptionPane.showMessageDialog(null,"Pausa");
+    }//GEN-LAST:event_PausabtnActionPerformed
+
+    private void EmpezarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpezarbtnActionPerformed
+        // TODO add your handling code here:
+        Empezarbtn.setEnabled(false);
+        Pausabtn.setEnabled(true);
+        this.lienzo1.start();
+    }//GEN-LAST:event_EmpezarbtnActionPerformed
+
+    private void lienzo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lienzo1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lienzo1KeyTyped
+
+    private void lienzo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lienzo1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyChar() == 'w'){
+            this.newPlayer.setY(this.newPlayer.getY()-5);
+        }
+    }//GEN-LAST:event_lienzo1KeyPressed
+
+    private void lienzo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lienzo1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lienzo1MouseClicked
     
     /**
      * @param args the command line arguments
@@ -495,6 +567,8 @@ public class Inicio extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Empezarbtn;
+    private javax.swing.JButton Pausabtn;
     private juco_game.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 
